@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  work_summary: MyText
+  is_series: false
+  is_complete: 
+  series_id: 1
+  collection_id: 1
+  word_count: 1
+  total_chapters: 1
+
+two:
+  work_summary: MyText
+  is_series: false
+  is_complete: 
+  series_id: 1
+  collection_id: 1
+  word_count: 1
+  total_chapters: 1
