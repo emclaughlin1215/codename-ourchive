@@ -1,0 +1,33 @@
+<%= form_for(@blacklist) do |f| %>
+  <% if @blacklist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@blacklist.errors.count, "error") %> prohibited this blacklist from being saved:</h2>
+
+      <ul>
+      <% @blacklist.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :user_id %><br>
+    <%= f.number_field :user_id %>
+  </div>
+  <div class="field">
+    <%= f.label :author_id %><br>
+    <%= f.number_field :author_id %>
+  </div>
+  <div class="field">
+    <%= f.label :tag_id %><br>
+    <%= f.number_field :tag_id %>
+  </div>
+  <div class="field">
+    <%= f.label :phrase %><br>
+    <%= f.text_field :phrase %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

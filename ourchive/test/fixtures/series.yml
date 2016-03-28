@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  series_summary: MyText
+  is_complete: false
+  total_works: 1
+
+two:
+  series_summary: MyText
+  is_complete: false
+  total_works: 1

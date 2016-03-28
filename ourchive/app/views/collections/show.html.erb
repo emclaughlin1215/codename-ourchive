@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Mod:</strong>
+  <%= @collection.mod_id %>
+</p>
+
+<p>
+  <strong>Date open:</strong>
+  <%= @collection.date_open %>
+</p>
+
+<p>
+  <strong>Date closed:</strong>
+  <%= @collection.date_closed %>
+</p>
+
+<p>
+  <strong>Moderation type:</strong>
+  <%= @collection.moderation_type %>
+</p>
+
+<p>
+  <strong>Challenge description:</strong>
+  <%= @collection.challenge_description %>
+</p>
+
+<%= link_to 'Edit', edit_collection_path(@collection) %> |
+<%= link_to 'Back', collections_path %>

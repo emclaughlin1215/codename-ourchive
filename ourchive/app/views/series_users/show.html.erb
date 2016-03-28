@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Series:</strong>
+  <%= @series_user.series_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @series_user.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_series_user_path(@series_user) %> |
+<%= link_to 'Back', series_users_path %>

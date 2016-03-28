@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Tags</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Text</th>
+      <th>Is character</th>
+      <th>Is theme</th>
+      <th>Is primary pairing</th>
+      <th>Is secondary pairing</th>
+      <th>Is fandom</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tags.each do |tag| %>
+      <tr>
+        <td><%= tag.text %></td>
+        <td><%= tag.is_character %></td>
+        <td><%= tag.is_theme %></td>
+        <td><%= tag.is_primary_pairing %></td>
+        <td><%= tag.is_secondary_pairing %></td>
+        <td><%= tag.is_fandom %></td>
+        <td><%= link_to 'Show', tag %></td>
+        <td><%= link_to 'Edit', edit_tag_path(tag) %></td>
+        <td><%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tag', new_tag_path %>

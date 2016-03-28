@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Work Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Work</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @work_users.each do |work_user| %>
+      <tr>
+        <td><%= work_user.work_id %></td>
+        <td><%= work_user.user_id %></td>
+        <td><%= link_to 'Show', work_user %></td>
+        <td><%= link_to 'Edit', edit_work_user_path(work_user) %></td>
+        <td><%= link_to 'Destroy', work_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Work user', new_work_user_path %>

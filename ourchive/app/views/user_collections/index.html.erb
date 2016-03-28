@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing User Collections</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Collection</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_collections.each do |user_collection| %>
+      <tr>
+        <td><%= user_collection.user_id %></td>
+        <td><%= user_collection.collection_id %></td>
+        <td><%= link_to 'Show', user_collection %></td>
+        <td><%= link_to 'Edit', edit_user_collection_path(user_collection) %></td>
+        <td><%= link_to 'Destroy', user_collection, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New User collection', new_user_collection_path %>

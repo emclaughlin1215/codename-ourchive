@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  from_user_id: 1
+  to_user_id: 1
+  subject: MyString
+  body: MyText
+  is_admin: false
+  read: false
+
+two:
+  from_user_id: 1
+  to_user_id: 1
+  subject: MyString
+  body: MyText
+  is_admin: false
+  read: false

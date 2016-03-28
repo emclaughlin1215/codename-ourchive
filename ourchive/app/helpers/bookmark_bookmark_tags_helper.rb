@@ -1,0 +1,2 @@
+module BookmarkBookmarkTagsHelper
+end

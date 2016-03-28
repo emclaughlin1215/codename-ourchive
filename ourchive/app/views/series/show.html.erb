@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Series summary:</strong>
+  <%= @series.series_summary %>
+</p>
+
+<p>
+  <strong>Is complete:</strong>
+  <%= @series.is_complete %>
+</p>
+
+<p>
+  <strong>Total works:</strong>
+  <%= @series.total_works %>
+</p>
+
+<%= link_to 'Edit', edit_series_path(@series) %> |
+<%= link_to 'Back', series_index_path %>

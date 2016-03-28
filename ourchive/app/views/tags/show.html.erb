@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Text:</strong>
+  <%= @tag.text %>
+</p>
+
+<p>
+  <strong>Is character:</strong>
+  <%= @tag.is_character %>
+</p>
+
+<p>
+  <strong>Is theme:</strong>
+  <%= @tag.is_theme %>
+</p>
+
+<p>
+  <strong>Is primary pairing:</strong>
+  <%= @tag.is_primary_pairing %>
+</p>
+
+<p>
+  <strong>Is secondary pairing:</strong>
+  <%= @tag.is_secondary_pairing %>
+</p>
+
+<p>
+  <strong>Is fandom:</strong>
+  <%= @tag.is_fandom %>
+</p>
+
+<%= link_to 'Edit', edit_tag_path(@tag) %> |
+<%= link_to 'Back', tags_path %>

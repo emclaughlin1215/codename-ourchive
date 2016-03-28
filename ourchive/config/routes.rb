@@ -1,11 +1,32 @@
 Rails.application.routes.draw do
+  devise_for :users
+  resources :messages
+  resources :work_types
+  resources :moderation_types
+  resources :user_collections
+  resources :series_users
+  resources :bookmark_bookmark_tags
+  resources :types
+  resources :collections
+  resources :work_tags
+  resources :work_users
+  resources :subscription_pages
+  resources :bookmarks
+  resources :bookmark_tags
+  resources :tags
+  resources :series
+  resources :likes
+  resources :subscriptions
+  resources :histories
+  resources :blacklists
+  resources :chapters
   resources :works
   resources :tests
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'tests#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

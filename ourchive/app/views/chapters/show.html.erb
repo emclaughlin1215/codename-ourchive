@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Work:</strong>
+  <%= @chapter.work_id %>
+</p>
+
+<p>
+  <strong>Chapter summary:</strong>
+  <%= @chapter.chapter_summary %>
+</p>
+
+<p>
+  <strong>Chapter number:</strong>
+  <%= @chapter.chapter_number %>
+</p>
+
+<p>
+  <strong>Body text:</strong>
+  <%= @chapter.body_text %>
+</p>
+
+<p>
+  <strong>Body audio:</strong>
+  <%= @chapter.body_audio %>
+</p>
+
+<p>
+  <strong>Body image:</strong>
+  <%= @chapter.body_image %>
+</p>
+
+<%= link_to 'Edit', edit_chapter_path(@chapter) %> |
+<%= link_to 'Back', chapters_path %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Moderation Types</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Moderation type</th>
+      <th>Moderation description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @moderation_types.each do |moderation_type| %>
+      <tr>
+        <td><%= moderation_type.moderation_type %></td>
+        <td><%= moderation_type.moderation_description %></td>
+        <td><%= link_to 'Show', moderation_type %></td>
+        <td><%= link_to 'Edit', edit_moderation_type_path(moderation_type) %></td>
+        <td><%= link_to 'Destroy', moderation_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Moderation type', new_moderation_type_path %>

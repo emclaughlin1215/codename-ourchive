@@ -1,0 +1,41 @@
+<%= form_for(@tag) do |f| %>
+  <% if @tag.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tag.errors.count, "error") %> prohibited this tag from being saved:</h2>
+
+      <ul>
+      <% @tag.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :text %><br>
+    <%= f.text_field :text %>
+  </div>
+  <div class="field">
+    <%= f.label :is_character %><br>
+    <%= f.check_box :is_character %>
+  </div>
+  <div class="field">
+    <%= f.label :is_theme %><br>
+    <%= f.check_box :is_theme %>
+  </div>
+  <div class="field">
+    <%= f.label :is_primary_pairing %><br>
+    <%= f.check_box :is_primary_pairing %>
+  </div>
+  <div class="field">
+    <%= f.label :is_secondary_pairing %><br>
+    <%= f.check_box :is_secondary_pairing %>
+  </div>
+  <div class="field">
+    <%= f.label :is_fandom %><br>
+    <%= f.check_box :is_fandom %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mod_id: 1
+  date_open: 2016-03-28 19:59:42
+  date_closed: 2016-03-28 19:59:42
+  moderation_type: 1
+  challenge_description: MyString
+
+two:
+  mod_id: 1
+  date_open: 2016-03-28 19:59:42
+  date_closed: 2016-03-28 19:59:42
+  moderation_type: 1
+  challenge_description: MyString

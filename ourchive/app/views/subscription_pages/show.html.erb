@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @subscription_page.user_id %>
+</p>
+
+<p>
+  <strong>Work:</strong>
+  <%= @subscription_page.work_id %>
+</p>
+
+<p>
+  <strong>Finished:</strong>
+  <%= @subscription_page.finished %>
+</p>
+
+<%= link_to 'Edit', edit_subscription_page_path(@subscription_page) %> |
+<%= link_to 'Back', subscription_pages_path %>

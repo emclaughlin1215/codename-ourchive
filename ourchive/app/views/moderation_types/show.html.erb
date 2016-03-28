@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Moderation type:</strong>
+  <%= @moderation_type.moderation_type %>
+</p>
+
+<p>
+  <strong>Moderation description:</strong>
+  <%= @moderation_type.moderation_description %>
+</p>
+
+<%= link_to 'Edit', edit_moderation_type_path(@moderation_type) %> |
+<%= link_to 'Back', moderation_types_path %>
