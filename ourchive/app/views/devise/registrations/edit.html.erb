@@ -2,7 +2,13 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
-
+<% flash.each do |key, value| %>
+  <div class="alert alert-dismissible alert-<%= key.to_s == 'notice' ? 'success' : 'danger' %>" role="alert">
+   <button type="button" class="close" data-dismiss="alert">
+     <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+       <%= value if value.is_a?(String) %>
+  </div>
+<% end %>
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true %>

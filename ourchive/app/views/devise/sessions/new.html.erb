@@ -1,4 +1,11 @@
 <h2>Log in</h2>
+<% flash.each do |key, value| %>
+  <div class="alert alert-dismissible alert-<%= key.to_s == 'notice' ? 'success' : 'danger' %>" role="alert">
+   <button type="button" class="close" data-dismiss="alert">
+     <span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+       <%= value if value.is_a?(String) %>
+  </div>
+<% end %>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
