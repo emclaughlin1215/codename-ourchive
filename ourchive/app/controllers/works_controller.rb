@@ -14,7 +14,12 @@ class WorksController < ApplicationController
 
   # GET /works/new
   def new
-    @work = Work.new
+    if current_user
+      @work = Work.new
+      @chapter = Chapter.new
+    else
+      redirect_to new_user_session_path, notice: 'You are not currently logged in.'
+    end
   end
 
   # GET /works/1/edit
@@ -25,7 +30,9 @@ class WorksController < ApplicationController
   # POST /works.json
   def create
     @work = Work.new(work_params)
-
+    @chapter = Chapter.new(chapter_params)
+    @chapter.work = @work
+    @work.user = current_user
     respond_to do |format|
       if @work.save
         format.html { redirect_to @work, notice: 'Work was successfully created.' }
