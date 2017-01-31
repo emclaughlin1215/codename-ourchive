@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label :is_complete %><br>
-    <%= f.text_field :is_complete %>
+    <%= f.check_box :is_complete %>
   </div>
   <div class="field">
     <%= f.label :series_id %><br>
@@ -39,6 +39,10 @@
     <%= f.label :total_chapters %><br>
     <%= f.number_field :total_chapters %>
   </div>
+  <%= fields_for @chapter, f do |c| %>
+      <%= c.label :body_text %><br>
+      <%= c.text_area :body_text %>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
