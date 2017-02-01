@@ -17,6 +17,10 @@ class WorksController < ApplicationController
     if current_user
       @work = Work.new
       @chapter = Chapter.new
+      @tags = []
+      @character_tag = Tag.new(:is_character => true)
+      @tags << Tag.new(:is_fandom => true)
+      @tags << Tag.new(:is_theme => true)
     else
       redirect_to new_user_session_path, notice: 'You are not currently logged in.'
     end

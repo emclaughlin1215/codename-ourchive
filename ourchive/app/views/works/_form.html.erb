@@ -40,8 +40,16 @@
     <%= f.number_field :total_chapters %>
   </div>
   <%= fields_for @chapter, f do |c| %>
-      <%= c.label :body_text %><br>
-      <%= c.text_area :body_text %>
+      <div class="field">
+        <%= c.label :body_text %><br>
+        <%= c.text_area :body_text %>
+      </div>
+  <% end %>
+  <%= fields_for @character_tag, f do |ct| %>
+      <div class="field">
+        <%= ct.label "Character(s)" %>
+        <%= ct.text_area :text %>
+      </div>
   <% end %>
   <div class="actions">
     <%= f.submit %>
