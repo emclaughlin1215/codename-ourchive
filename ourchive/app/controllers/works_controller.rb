@@ -36,6 +36,8 @@ class WorksController < ApplicationController
     respond_to do |format|
       if @work.save
         @chapter.work_id = @work.id
+        @chapter.chapter_number = 1
+        @chapter.chapter_summary = @work.work_summary
         if @chapter.save
           format.html { redirect_to @work, notice: 'Work was successfully created.' }
           format.json { render :show, status: :created, location: @work }
