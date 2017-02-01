@@ -1,10 +1,10 @@
-<%= form_for(@work) do |f| %>
-  <% if @work.errors.any? %>
+<%= form_for @work_creation_form, url: works_path do |f| %>
+  <% if @work_creation_form.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@work.errors.count, "error") %> prohibited this work from being saved:</h2>
+      <h2><%= pluralize(@work_creation_form.errors.count, "error") %> prohibited this work from being saved:</h2>
 
       <ul>
-      <% @work.errors.full_messages.each do |message| %>
+      <% @work_creation_form.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -39,18 +39,10 @@
     <%= f.label :total_chapters %><br>
     <%= f.number_field :total_chapters %>
   </div>
-  <%= fields_for @chapter, f do |c| %>
-      <div class="field">
-        <%= c.label :body_text %><br>
-        <%= c.text_area :body_text %>
-      </div>
-  <% end %>
-  <%= fields_for @character_tag, f do |ct| %>
-      <div class="field">
-        <%= ct.label "Character(s)" %>
-        <%= ct.text_area :text %>
-      </div>
-  <% end %>
+  <div class="field">
+    <%= f.label :body_text %><br>
+    <%= f.text_area :body_text %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
