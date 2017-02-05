@@ -2,6 +2,7 @@ class WorkCreationForm
     include ActiveModel::Model
     include Virtus.model
 
+    attribute :user_id, Integer
     attribute :work_summary, String
     attribute :is_complete, Boolean
     attribute :series_id, Integer
@@ -29,11 +30,15 @@ class WorkCreationForm
         end
     end
 
+    def set_user!(user)
+        self.user_id = user.id
+    end
+
     private
 
     def persist!
         @work = Work.create!(work_summary: work_summary, is_complete: is_complete, series_id: series_id, collection_id: collection_id,
-            word_count: word_count, total_chapters: total_chapters, is_series: is_series)
+            word_count: word_count, total_chapters: total_chapters, is_series: is_series, user_id: user_id)
         chapter = @work.chapters.create!(body_text: body_text, chapter_summary: work_summary, chapter_number: 1)
         character_tags_split = character_tags.to_s.split("\r\n")
         character_tags_split.each do |tag|

@@ -36,8 +36,14 @@
     <%= f.number_field :word_count %>
   </div>
   <div class="field">
-    <%= f.label :total_chapters %><br>
-    <%= f.number_field :total_chapters %>
+    <label>
+      <input id="multi_chapter" type="checkbox" value="1" />
+        Multi-chapter?
+      </label>
+  </div>
+  <div style="display:none;" class="field" id="chapter_count">
+      <%= f.label :total_chapters %><br>
+      <%= f.number_field :total_chapters %>
   </div>
   <div class="field">
     <%= f.label :body_text %><br>

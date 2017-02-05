@@ -4,7 +4,7 @@ class WorksController < ApplicationController
   # GET /works
   # GET /works.json
   def index
-    @works = Work.all
+    @works = Work.where(user_id: current_user.id)
   end
 
   # GET /works/1
@@ -29,6 +29,7 @@ class WorksController < ApplicationController
   # POST /works.json
   def create
     @work_creation_form = WorkCreationForm.new(params[:work_creation_form])
+    @work_creation_form.set_user!(current_user)
     respond_to do |format|
       if @work_creation_form.save
           format.html { redirect_to works_path, notice: 'Work was successfully created.' }
