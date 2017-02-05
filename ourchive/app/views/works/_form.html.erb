@@ -10,66 +10,89 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :work_summary %><br>
-    <%= f.text_area :work_summary %>
+    Please choose a type of work to post:
+    <select id="work_type">
+      <option value="" selected="selected">Select a work type</option>
+      <option value="1">Podfic</option>
+      <option value="2">Fanfic</option>
+      <option value="3">Art</option>
+    </select>
   </div>
-  <div class="field">
-    <%= f.label :is_series %><br>
-    <%= f.check_box :is_series %>
-  </div>
-  <div class="field">
-    <%= f.label :is_complete %><br>
-    <%= f.check_box :is_complete %>
-  </div>
-  <div class="field">
-    <%= f.label :series_id %><br>
-    <%= f.number_field :series_id %>
-  </div>
-  <div class="field">
-    <%= f.label :collection_id %><br>
-    <%= f.number_field :collection_id %>
-  </div>
-  <div class="field">
-    <%= f.label :word_count %><br>
-    <%= f.number_field :word_count %>
-  </div>
-  <div class="field">
-    <label>
-      <input id="multi_chapter" type="checkbox" value="1" />
-        Multi-chapter?
+  <div id="fanfic_form" style="display:none;">
+    <div class="field">
+      <%= f.label :work_summary %><br>
+      <%= f.text_area :work_summary %>
+    </div>
+    <div class="field" style="display:none;" id="series_id">
+      <%= f.label :series_id %><br>
+      <%= f.number_field :series_id %>
+    </div>
+    <div class="field">
+      <%= f.check_box :is_series, :id => 'is_series' %> <%= f.label :is_series, "Series?" %>
+    </div>
+    <div class="field" style="display:none;" id="series_id">
+      <%= f.label :series_id %><br>
+      <%= f.number_field :series_id %>
+    </div>
+    <div class="field">
+      <%= f.check_box :is_complete %> <%= f.label :is_complete, "Complete?" %>
+    </div>
+    <div class="field">
+      <label>
+        <input id="in_collection" type="checkbox" value="1" />
+          Add to collection?
       </label>
+    </div>
+    <div class="field" id="collection_id">
+      <%= f.label :collection_id %><br>
+      <%= f.number_field :collection_id %>
+    </div>
+    <div class="field">
+      <%= f.label :word_count %><br>
+      <%= f.number_field :word_count %>
+    </div>
+    <div class="field">
+      <label>
+        <input id="multi_chapter" type="checkbox" value="1" />
+          Multi-chapter?
+      </label>
+    </div>
+    <div style="display:none;" class="field" id="chapter_count">
+        <%= f.label :total_chapters %><br>
+        <%= f.number_field :total_chapters %>
+    </div>
+    <div class="field" id="work_textbox">
+      <%= f.label :body_text, "Work text"%><br>
+      <%= f.text_area :body_text %>
+    </div>
+    <div class="field" style="display:none;" id="chapter_textbox">
+      <%= f.label :body_text, "Chapter text" %><br>
+      <%= f.text_area :body_text %>
+    </div>
+    <div class="field">
+      <%= f.label :character_tags %><br>
+      <%= f.text_area :character_tags %>
+    </div>
+    <div class="field">
+      <%= f.label :theme_tags %><br>
+      <%= f.text_area :theme_tags %>
+    </div>
+    <div class="field">
+      <%= f.label :fandom_tags %><br>
+      <%= f.text_area :fandom_tags %>
+    </div>
+    <div class="field">
+      <%= f.label :primary_pairing_tags %><br>
+      <%= f.text_area :primary_pairing_tags %>
+    </div>
+    <div class="field">
+      <%= f.label :secondary_pairing_tags %><br>
+      <%= f.text_area :secondary_pairing_tags %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
   </div>
-  <div style="display:none;" class="field" id="chapter_count">
-      <%= f.label :total_chapters %><br>
-      <%= f.number_field :total_chapters %>
-  </div>
-  <div class="field">
-    <%= f.label :body_text %><br>
-    <%= f.text_area :body_text %>
-  </div>
-  <div class="field">
-    <%= f.label :character_tags %><br>
-    <%= f.text_area :character_tags %>
-  </div>
-  <div class="field">
-    <%= f.label :theme_tags %><br>
-    <%= f.text_area :theme_tags %>
-  </div>
-  <div class="field">
-    <%= f.label :fandom_tags %><br>
-    <%= f.text_area :fandom_tags %>
-  </div>
-  <div class="field">
-    <%= f.label :primary_pairing_tags %><br>
-    <%= f.text_area :primary_pairing_tags %>
-  </div>
-  <div class="field">
-    <%= f.label :secondary_pairing_tags %><br>
-    <%= f.text_area :secondary_pairing_tags %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  
 <% end %>
