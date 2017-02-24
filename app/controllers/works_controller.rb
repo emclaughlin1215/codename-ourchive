@@ -4,7 +4,7 @@ class WorksController < ApplicationController
   # GET /works
   # GET /works.json
   def index
-    @works = Work.all
+    @works = Work.where(user_id: current_user.id)
   end
 
   # GET /works/1
@@ -15,8 +15,7 @@ class WorksController < ApplicationController
   # GET /works/new
   def new
     if current_user
-      @work = Work.new
-      @chapter = Chapter.new
+      @work_creation_form = WorkCreationForm.new
     else
       redirect_to new_user_session_path, notice: 'You are not currently logged in.'
     end
@@ -29,25 +28,15 @@ class WorksController < ApplicationController
   # POST /works
   # POST /works.json
   def create
-    @work = Work.new(work_params)
-    @chapter = Chapter.new
-    @chapter.body_text = params[:chapter][:body_text]
-    @work.user = current_user
+    @work_creation_form = WorkCreationForm.new(params[:work_creation_form])
+    @work_creation_form.set_user!(current_user)
     respond_to do |format|
-      if @work.save
-        @chapter.work_id = @work.id
-        @chapter.chapter_number = 1
-        @chapter.chapter_summary = @work.work_summary
-        if @chapter.save
-          format.html { redirect_to @work, notice: 'Work was successfully created.' }
+      if @work_creation_form.save
+          format.html { redirect_to works_path, notice: 'Work was successfully created.' }
           format.json { render :show, status: :created, location: @work }
-        else
-          format.html { render :new }
-          format.json { render json: @work.errors, status: :unprocessable_entity}
-        end
       else
         format.html { render :new }
-        format.json { render json: @work.errors, status: :unprocessable_entity }
+        format.json { render json: @work_creation_form.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -85,5 +74,9 @@ class WorksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_params
       params.require(:work).permit(:work_summary, :is_series, :is_complete, :series_id, :collection_id, :word_count, :total_chapters)
+    end
+
+    def work_creation_form_params
+      params.require(:work_creation_form).permit(:work_summary, :is_complete, :series_id, :collection_id, :word_count, :total_chapters, :is_series, :body_text, :character_tags, :theme_tags, :fandom_tags, :primary_pairing_tags, :secondary_pairing_tags)
     end
 end

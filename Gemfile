@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'virtus'
 gem 'responders'
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -29,7 +30,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'autoprefixer-rails', '~> 6.3.5', '>= 6.3.3.1'
 gem 'bootstrap-sass', '~> 3.3.6'
-
+gem 'redis', '~>3.2'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
