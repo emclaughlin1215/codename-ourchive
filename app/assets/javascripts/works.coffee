@@ -7,6 +7,7 @@ jQuery ->
         	$('#chapter_count').show() 
         	$('#chapter_textbox').show()
         	$('#work_textbox').hide()
+		$('#multi_chapter_buttons').show()
     	else
         	$('#chapter_count').hide()
         	$('#chapter_textbox').hide()
