@@ -3,12 +3,14 @@
     return $('#multi_chapter').change(function() {
       if (this.checked) {
         $('#chapter_count').show();
+        $('#multi_chapter_buttons').show();
         $('#chapter_textbox').show();
         return $('#work_textbox').hide();
       } else {
         $('#chapter_count').hide();
         $('#chapter_textbox').hide();
-        return $('#work_textbox').show();
+        $('#work_textbox').show();
+        return $('#multi_chapter_buttons').hide();
       }
     });
   });

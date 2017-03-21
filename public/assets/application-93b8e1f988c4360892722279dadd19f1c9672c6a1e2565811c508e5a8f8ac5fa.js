@@ -12449,6 +12449,7 @@ return jQuery;
     return $('#multi_chapter').change(function() {
       if (this.checked) {
         $('#chapter_count').show();
+        $('#multi_chapter_buttons').show();
         $('#chapter_textbox').show();
         return $('#work_textbox').hide();
       } else {

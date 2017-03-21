@@ -4,13 +4,15 @@
 jQuery ->
 	$('#multi_chapter').change ->
   		if (this.checked)
-        	$('#chapter_count').show() 
+        	$('#chapter_count').show()
+        	$('#multi_chapter_buttons').show() 
         	$('#chapter_textbox').show()
         	$('#work_textbox').hide()
     	else
         	$('#chapter_count').hide()
         	$('#chapter_textbox').hide()
         	$('#work_textbox').show()
+        	$('#multi_chapter_buttons').hide()
 jQuery ->
 	$('#is_series').change ->
   		if (this.checked)
