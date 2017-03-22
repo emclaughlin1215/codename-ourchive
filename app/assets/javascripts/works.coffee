@@ -35,8 +35,8 @@ jQuery ->
 jQuery ->
        $('#fandom_tags_filter').autocomplete
            appendTo: '#new_work_creation_form',
-           source: '/tag_suggestions/?type=fandom'
+           source: '/tag_suggestions/?type=0'
 jQuery ->
        $('#character_tags_filter').autocomplete
            appendTo: '#new_work_creation_form',
-           source: '/tag_suggestions/?type=character'
+           source: '/tag_suggestions/?type=1'

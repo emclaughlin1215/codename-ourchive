@@ -42,30 +42,30 @@ class WorkCreationForm
         chapter = @work.chapters.create!(body_text: body_text, chapter_summary: work_summary, chapter_number: 1)
         character_tags_split = character_tags.to_s.split("\r\n")
         character_tags_split.each do |tag|
-            @tag = Tag.where(text: tag, is_character: true).first_or_create
+            @tag = Tag.where(text: tag, type_key: 1).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
             TagSuggestion.add_tag(@tag)
         end
         theme_tags_split = theme_tags.to_s.split("\r\n")
         theme_tags_split.each do |tag|
-            @tag = Tag.where(text: tag, is_theme: true).first_or_create
+            @tag = Tag.where(text: tag, type_key: 4).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
         end
         primary_pairing_tags_split = primary_pairing_tags.to_s.split("\r\n")
         primary_pairing_tags_split.each do |tag|
-            @tag = Tag.where(text: tag, is_primary_pairing: true).first_or_create
+            @tag = Tag.where(text: tag, type_key: 2).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
             TagSuggestion.add_tag(@tag)
         end
         secondary_pairing_tags_split = secondary_pairing_tags.to_s.split("\r\n")
         secondary_pairing_tags_split.each do |tag|
-            @tag = Tag.where(text: tag, is_secondary_pairing: true).first_or_create
+            @tag = Tag.where(text: tag, type_key: 3).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
             TagSuggestion.add_tag(@tag)
         end
         fandom_tags_split = fandom_tags.to_s.split("\r\n")
         fandom_tags_split.each do |tag|
-            @tag = Tag.where(text: tag, is_fandom: true).first_or_create
+            @tag = Tag.where(text: tag, type_key: 0).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
             TagSuggestion.add_tag(@tag)
         end
