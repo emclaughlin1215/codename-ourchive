@@ -44,6 +44,7 @@ class WorkCreationForm
         character_tags_split.each do |tag|
             @tag = Tag.where(text: tag, is_character: true).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
+            TagSuggestion.add_tag(@tag)
         end
         theme_tags_split = theme_tags.to_s.split("\r\n")
         theme_tags_split.each do |tag|
@@ -54,16 +55,19 @@ class WorkCreationForm
         primary_pairing_tags_split.each do |tag|
             @tag = Tag.where(text: tag, is_primary_pairing: true).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
+            TagSuggestion.add_tag(@tag)
         end
         secondary_pairing_tags_split = secondary_pairing_tags.to_s.split("\r\n")
         secondary_pairing_tags_split.each do |tag|
             @tag = Tag.where(text: tag, is_secondary_pairing: true).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
+            TagSuggestion.add_tag(@tag)
         end
         fandom_tags_split = fandom_tags.to_s.split("\r\n")
         fandom_tags_split.each do |tag|
             @tag = Tag.where(text: tag, is_fandom: true).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
+            TagSuggestion.add_tag(@tag)
         end
     end
 end
