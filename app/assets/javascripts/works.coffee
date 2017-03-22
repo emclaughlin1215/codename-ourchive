@@ -32,3 +32,7 @@ jQuery ->
         	$('#collection_id').show() 
     	else
         	$('#collection_id').hide()
+jQuery ->
+       $('#fandom_tags_filter').autocomplete
+           appendTo: '#new_work_creation_form',
+           source: '/tag_suggestions'

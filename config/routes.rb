@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'tests#index'
-
+  match '/tag_suggestions', to: 'tag_suggestions#index', via: :get
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
