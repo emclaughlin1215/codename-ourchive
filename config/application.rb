@@ -23,5 +23,6 @@ module Ourchive
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.precompile += %w(*.js)
+    config.tags = { 0 => "fandom", 1 => "character", 2 => "primary_pairing", 3 => "secondary_pairing", 4 => "theme"}
   end
 end
