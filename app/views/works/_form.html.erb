@@ -83,8 +83,9 @@
     </div>
     <div class="field" id="0_tags_div">
       <%= f.label TagConfig.config["0"]["friendly"] %><br>
-      <%= f.text_field :zero_tags, :id => '0_tags_filter' %><br>
-      <ul id="0_tags_list"/> 
+      <ul id="0_tags_list" class="tag_ul">
+          <li id="new_li"><%= f.text_field :zero_tags, :id => '0_tags_filter' %></li>
+      </ul> 
     </div>
     <div class="field" id="2_tags_div">
       <%= f.label TagConfig.config["2"]["friendly"] %><br>
