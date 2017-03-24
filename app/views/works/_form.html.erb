@@ -14,12 +14,13 @@
     Please choose a type of work to post:
     <select id="work_type">
       <option value="" selected="selected">Select a work type</option>
-      <option value="1">Podfic</option>
-      <option value="2">Fanfic</option>
-      <option value="3">Art</option>
-    </select>
+      <option value="0"><%= WorkConfig.config["0"]["friendly"] %></option>
+      <option value="1"><%= WorkConfig.config["1"]["friendly"] %></option>
+      <option value="2"><%= WorkConfig.config["2"]["friendly"] %></option>
+      <option value="3"><%= WorkConfig.config["3"]["friendly"] %></option>
+   </select>
   </div>
-  <div id="fanfic_form" style="display:none;">
+  <div id="1_form" style="display:none;">
     <div class="field">
       <%= f.label :work_summary %><br>
       <%= f.text_area :work_summary %>

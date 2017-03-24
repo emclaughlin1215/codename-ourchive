@@ -1,0 +1,19 @@
+development: &base
+  0:
+    system: "podfic"
+    friendly: "Podfic"
+  1: 
+    system: "fanfic"
+    friendly: "Fanfic"
+  2: 
+    system: "fanart"
+    friendly: "Fanart"
+  3: 
+    system: "meta"
+    friendly: "Meta"
+
+test:
+ <<: *base
+
+production:
+  <<: *base

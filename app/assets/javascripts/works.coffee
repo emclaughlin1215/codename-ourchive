@@ -21,11 +21,11 @@ jQuery ->
         	$('#series_id').hide()
 jQuery ->
 	$('#work_type').change ->
-  		work_type = $('#work_type :selected').text()
-  		if work_type == 'Fanfic'
-      		$('#fanfic_form').show() 
-    	else
-      		$('#fanfic_form').hide() 
+		work_type = $('#work_type :selected').val()	
+		if (work_type == '1')
+			$('#1_form').show()
+		else
+			$('#1_form').hide() 
 jQuery ->
 	$('#in_collection').change ->
   		if (this.checked)
