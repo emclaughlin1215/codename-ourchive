@@ -1,2 +1,3 @@
 # codename-ourchive
-An opensource archive for creators.
+An open-source archive for creators that aims to be easily customizable and hostable.
+
