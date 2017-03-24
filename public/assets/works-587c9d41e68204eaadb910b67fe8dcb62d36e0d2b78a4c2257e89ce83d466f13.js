@@ -45,8 +45,7 @@ $('#work_type').change(function() {
     appendTo: '#new_work_creation_form',
     source: '/tag_suggestions/?type=0',
     select: function(event, ui) {
-      $('#0_tags_filter').val('');
-      $("#0_tags_div ul").append('<li>'+ ui.item.label + '</li>');
+      $('#0_tags_filter').val(ui.item.label);
       return false;
     }
   });
@@ -55,7 +54,6 @@ $('#work_type').change(function() {
     appendTo: '#new_work_creation_form',
     source: '/tag_suggestions/?type=1',
     select: function(event, ui) {
-      $('#1_tags_filter').val('');
       $("#1_tags_div ul").append('<li>'+ ui.item.label + '</li>');
       return false;
     }
@@ -65,8 +63,7 @@ $('#work_type').change(function() {
     appendTo: '#new_work_creation_form',
     source: '/tag_suggestions/?type=2',
     select: function(event, ui) {
-      $('#2_tags_filter').val('');
-      $("#2_tags_div ul").append('<li>'+ ui.item.label + '</li>');
+      $('#2_tags_filter').val(ui.item.label);
       return false;
     }
   });
@@ -75,8 +72,7 @@ $('#work_type').change(function() {
     appendTo: '#new_work_creation_form',
     source: '/tag_suggestions/?type=3',
     select: function(event, ui) {
-      $('#3_tags_filter').val('');
-      $("#3_tags_div ul").append('<li>'+ ui.item.label + '</li>');
+      $('#3_tags_filter').val(ui.item.label);
       return false;
     }
   });
@@ -85,8 +81,7 @@ $('#work_type').change(function() {
     appendTo: '#new_work_creation_form',
     source: '/tag_suggestions/?type=4',
     select: function(event, ui) {
-      $('#4_tags_filter').val('');
-      $("#4_tags_div ul").append('<li>'+ ui.item.label + '</li>');
+      $('#4_tags_filter').val(ui.item.label);
       return false;
     }
   });
