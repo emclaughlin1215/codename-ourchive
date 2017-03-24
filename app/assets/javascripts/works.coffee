@@ -40,3 +40,15 @@ jQuery ->
        $('#character_tags_filter').autocomplete
            appendTo: '#new_work_creation_form',
            source: '/tag_suggestions/?type=1'
+jQuery ->
+       $('#primary_pairing_filter').autocomplete
+           appendTo: '#new_work_creation_form',
+           source: '/tag_suggestions/?type=2'
+jQuery ->
+       $('#secondary_pairing_filter').autocomplete
+           appendTo: '#new_work_creation_form',
+           source: '/tag_suggestions/?type=3'
+jQuery ->
+       $('#theme_filter').autocomplete
+           appendTo: '#new_work_creation_form',
+           source: '/tag_suggestions/?type=4'

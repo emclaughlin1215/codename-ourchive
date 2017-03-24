@@ -76,7 +76,7 @@
     </div>
     <div class="field">
       <%= f.label :theme_tags %><br>
-      <%= f.text_area :theme_tags %>
+      <%= f.text_field :theme_tags, :id => 'theme_filter' %>
     </div>
     <div class="field">
       <%= f.label :fandom_tags %><br>
@@ -84,11 +84,11 @@
     </div>
     <div class="field">
       <%= f.label :primary_pairing_tags %><br>
-      <%= f.text_area :primary_pairing_tags %>
+      <%= f.text_field :primary_pairing_tags, :id => 'primary_pairing_filter' %>
     </div>
     <div class="field">
       <%= f.label :secondary_pairing_tags %><br>
-      <%= f.text_area :secondary_pairing_tags %>
+      <%= f.text_field :secondary_pairing_tags, :id => 'secondary_pairing_filter' %>
     </div>
     <div class="actions">
       <%= f.submit %>

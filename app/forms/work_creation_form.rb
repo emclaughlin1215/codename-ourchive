@@ -50,6 +50,7 @@ class WorkCreationForm
         theme_tags_split.each do |tag|
             @tag = Tag.where(text: tag, type_key: 4).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
+            TagSuggestion.add_tag(@tag)
         end
         primary_pairing_tags_split = primary_pairing_tags.to_s.split("\r\n")
         primary_pairing_tags_split.each do |tag|
