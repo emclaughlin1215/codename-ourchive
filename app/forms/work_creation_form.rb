@@ -11,11 +11,11 @@ class WorkCreationForm
     attribute :total_chapters, Integer
     attribute :is_series, Boolean
     attribute :body_text, String
-    attribute :character_tags, String
-    attribute :theme_tags, String
-    attribute :fandom_tags, String
-    attribute :primary_pairing_tags, String
-    attribute :secondary_pairing_tags, String
+    attribute :one_tags, String
+    attribute :four_tags, String
+    attribute :zero_tags, String
+    attribute :two_tags, String
+    attribute :three_tags, String
 
     validates :work_summary, presence: true
 
@@ -40,32 +40,32 @@ class WorkCreationForm
         @work = Work.create!(work_summary: work_summary, is_complete: is_complete, series_id: series_id, collection_id: collection_id,
             word_count: word_count, total_chapters: total_chapters, is_series: is_series, user_id: user_id)
         chapter = @work.chapters.create!(body_text: body_text, chapter_summary: work_summary, chapter_number: 1)
-        character_tags_split = character_tags.to_s.split("\r\n")
-        character_tags_split.each do |tag|
+        one_tags_split = one_tags.to_s.split("\r\n")
+        one_tags_split.each do |tag|
             @tag = Tag.where(text: tag, type_key: 1).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
             TagSuggestion.add_tag(@tag)
         end
-        theme_tags_split = theme_tags.to_s.split("\r\n")
-        theme_tags_split.each do |tag|
+        four_tags_split = four_tags.to_s.split("\r\n")
+        four_tags_split.each do |tag|
             @tag = Tag.where(text: tag, type_key: 4).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
             TagSuggestion.add_tag(@tag)
         end
-        primary_pairing_tags_split = primary_pairing_tags.to_s.split("\r\n")
-        primary_pairing_tags_split.each do |tag|
+        two_tags_split = two_tags.to_s.split("\r\n")
+        two_tags_split.each do |tag|
             @tag = Tag.where(text: tag, type_key: 2).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
             TagSuggestion.add_tag(@tag)
         end
-        secondary_pairing_tags_split = secondary_pairing_tags.to_s.split("\r\n")
-        secondary_pairing_tags_split.each do |tag|
+        three_tags_split = three_tags.to_s.split("\r\n")
+        three_tags_split.each do |tag|
             @tag = Tag.where(text: tag, type_key: 3).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
             TagSuggestion.add_tag(@tag)
         end
-        fandom_tags_split = fandom_tags.to_s.split("\r\n")
-        fandom_tags_split.each do |tag|
+        zero_tags_split = zero_tags.to_s.split("\r\n")
+        zero_tags_split.each do |tag|
             @tag = Tag.where(text: tag, type_key: 0).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
             TagSuggestion.add_tag(@tag)

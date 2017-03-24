@@ -71,24 +71,24 @@
       <%= f.text_area :body_text %>
     </div>
     <div class="field">
-      <%= f.label :character_tags %><br>
-      <%= f.text_field :character_tags, :id => 'character_tags_filter' %>
+      <%= f.label TagConfig.config["1"]["friendly"] %><br>
+      <%= f.text_field :one_tags, :id => '1_tags_filter' %>
     </div>
     <div class="field">
-      <%= f.label :theme_tags %><br>
-      <%= f.text_field :theme_tags, :id => 'theme_filter' %>
+      <%= f.label TagConfig.config["4"]["friendly"] %><br>
+      <%= f.text_field :four_tags, :id => '4_tags_filter' %>
     </div>
     <div class="field">
-      <%= f.label :fandom_tags %><br>
-      <%= f.text_field :fandom_tags, :id => 'fandom_tags_filter' %><br>
+      <%= f.label TagConfig.config["0"]["friendly"] %><br>
+      <%= f.text_field :zero_tags, :id => '0_tags_filter' %><br>
     </div>
     <div class="field">
-      <%= f.label :primary_pairing_tags %><br>
-      <%= f.text_field :primary_pairing_tags, :id => 'primary_pairing_filter' %>
+      <%= f.label TagConfig.config["2"]["friendly"] %><br>
+      <%= f.text_field :two_tags, :id => '2_tags_filter' %>
     </div>
     <div class="field">
-      <%= f.label :secondary_pairing_tags %><br>
-      <%= f.text_field :secondary_pairing_tags, :id => 'secondary_pairing_filter' %>
+      <%= f.label TagConfig.config["3"]["friendly"] %><br>
+      <%= f.text_field :three_tags, :id => '3_tags_filter' %>
     </div>
     <div class="actions">
       <%= f.submit %>

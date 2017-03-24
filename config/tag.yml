@@ -1,9 +1,19 @@
 development: &base
-  0: "fandom"
-  1: "character"
-  2: "primary_pairing"
-  3: "secondary_pairing"
-  4: "theme"
+  0:
+    system: "fandom"
+    friendly: "Fandom(s)"
+  1: 
+    system: "character"
+    friendly: "Character(s)"
+  2: 
+    system: "primary_pairing"
+    friendly: "Primary Pairing(s)"
+  3: 
+    system: "secondary_pairing"
+    friendly: "Secondary Pairing(s)"
+  4: 
+    system: "theme"
+    friendly: "Theme(s)"
 
 test:
  <<: *base

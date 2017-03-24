@@ -33,22 +33,22 @@ jQuery ->
     	else
         	$('#collection_id').hide()
 jQuery ->
-       $('#fandom_tags_filter').autocomplete
+       $('#0_tags_filter').autocomplete
            appendTo: '#new_work_creation_form',
            source: '/tag_suggestions/?type=0'
 jQuery ->
-       $('#character_tags_filter').autocomplete
+       $('#1_tags_filter').autocomplete
            appendTo: '#new_work_creation_form',
            source: '/tag_suggestions/?type=1'
 jQuery ->
-       $('#primary_pairing_filter').autocomplete
+       $('#2_tags_filter').autocomplete
            appendTo: '#new_work_creation_form',
            source: '/tag_suggestions/?type=2'
 jQuery ->
-       $('#secondary_pairing_filter').autocomplete
+       $('#3_tags_filter').autocomplete
            appendTo: '#new_work_creation_form',
            source: '/tag_suggestions/?type=3'
 jQuery ->
-       $('#theme_filter').autocomplete
+       $('#4_tags_filter').autocomplete
            appendTo: '#new_work_creation_form',
            source: '/tag_suggestions/?type=4'
