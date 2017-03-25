@@ -22,7 +22,7 @@ function create_work_tag(val, item, hiddenItem, inputItem) {
   }
 }
 
-$(document).on("page:change", function() {  
+$(document).ready(function() {  
   $('#multi_chapter').change(function(){
       if ($(this).is(":checked")){ 
         $('#chapter_count').show()
