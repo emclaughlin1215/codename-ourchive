@@ -1,3 +1,17 @@
+function remove_work_tag(tag) {
+    $(tag).remove();
+}
+
+function create_work_tag(val, item) {
+  var tag = $('<li id="tag_li"><span>'+val+'</span></li>');
+  var removeTag = $('<a><span class="text-icon">\xd7</span></a>')
+    .click(function(e) {
+      remove_work_tag(tag);
+    });
+  tag.append(removeTag);
+  $(item).append(tag);
+}
+
 $(document).on("page:change", function() {  
   $('#multi_chapter').change(function(){
       if ($(this).is(":checked")){ 
@@ -46,7 +60,7 @@ $('#work_type').change(function() {
     source: '/tag_suggestions/?type=0',
     select: function(event, ui) {
       $('#0_tags_filter').val('');
-      $("#0_tags_div ul").append('<li id="tag_li"><span>'+ ui.item.label + '</span></li>');
+      create_work_tag(ui.item.label, "#0_tags_div ul");
       return false;
     }
   });
@@ -90,4 +104,5 @@ $('#work_type').change(function() {
       return false;
     }
   });
+
 });
