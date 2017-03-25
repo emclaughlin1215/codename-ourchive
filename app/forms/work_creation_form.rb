@@ -46,19 +46,19 @@ class WorkCreationForm
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
             TagSuggestion.add_tag(@tag)
         end
-        four_tags_split = four_tags.to_s.split("\r\n")
+        four_tags_split = four_tags.to_s.split(",")
         four_tags_split.each do |tag|
             @tag = Tag.where(text: tag, type_key: 4).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
             TagSuggestion.add_tag(@tag)
         end
-        two_tags_split = two_tags.to_s.split("\r\n")
+        two_tags_split = two_tags.to_s.split(",")
         two_tags_split.each do |tag|
             @tag = Tag.where(text: tag, type_key: 2).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
             TagSuggestion.add_tag(@tag)
         end
-        three_tags_split = three_tags.to_s.split("\r\n")
+        three_tags_split = three_tags.to_s.split(",")
         three_tags_split.each do |tag|
             @tag = Tag.where(text: tag, type_key: 3).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
