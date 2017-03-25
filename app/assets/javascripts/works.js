@@ -2,7 +2,7 @@ function remove_work_tag(tag) {
     $(tag).remove();
 }
 
-function create_work_tag(val, item) {
+function create_work_tag(val, item, hiddenItem) {
   var tag = $('<li id="tag_li"><span>'+val+'</span></li>');
   var removeTag = $('<a><span class="text-icon">\xd7</span></a>')
     .click(function(e) {
@@ -10,6 +10,13 @@ function create_work_tag(val, item) {
     });
   tag.append(removeTag);
   $(item).append(tag);
+  var hiddenTag = $(hiddenItem).val();
+  if (hiddenTag != '') {
+    $(hiddenItem).val(hiddenTag + "," + val);
+  }
+  else {
+    $(hiddenItem).val(val);
+  }
 }
 
 $(document).on("page:change", function() {  
@@ -60,8 +67,20 @@ $('#work_type').change(function() {
     source: '/tag_suggestions/?type=0',
     select: function(event, ui) {
       $('#0_tags_filter').val('');
-      create_work_tag(ui.item.label, "#0_tags_div ul");
+      create_work_tag(ui.item.label, "#0_tags_div ul", "#0_tags_hidden");
       return false;
+    }
+  });
+
+  $( "#0_tags_filter" ).keypress(function( e ) {
+    var characterPressed = String.fromCharCode(e.which);
+    if (characterPressed == ',') {
+      var tmpVal = $('#0_tags_filter').val();
+      if (tmpVal != '') {
+        $('#0_tags_filter').val('');
+        create_work_tag(tmpVal, "#0_tags_div ul", "#0_tags_hidden");
+        e.preventDefault();
+      }
     }
   });
 
