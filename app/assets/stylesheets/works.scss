@@ -6,21 +6,33 @@
     border-width: 1px;
     border-color: #C6C6C6;
     background: inherit;
-    padding: 1px 5px;
+    padding: 5px 5px;
     overflow: auto;
 }
 
+.close_icon {
+    display: inline;
+    font-family: arial, sans-serif;
+    font-size: 16px;
+    line-height: 16px;
+    cursor: pointer;
+    right: .1em;
+    top: 50%;
+    margin-top: -8px;
+}
+
+.close_icon_link {
+    margin-left: 5px;
+}
+
 #tag_li {
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-    -webkit-border-radius: 6px;
-    border: 1px solid #CAD8F3;
+    border: 1px solid #005231;
 
     background: none;
-    background-color: #DEE7F8;
+    background-color: #BBDCCF;
 
     font-weight: normal;
-    padding: .2em 18px .2em .5em; 
+    padding: .2em .5em .2em .5em; 
     display: block;
     float: left;
     margin: 2px 5px 2px 0;
@@ -31,5 +43,18 @@
     float: left;
     margin: 2px 5px 2px 0;
     padding: .25em 4px .25em 0;
+}
+
+.new_textBox {
+    box-shadow: none;
+    border: none;
+    padding: .2em .5em .2em .5em;
+    display: block;
+    float: left;
+    margin: 2px 5px 2px 0;
+    width: inherit;
+    outline: none;
+    user-select: text;
+    cursor: auto;
 }
 

@@ -2,14 +2,17 @@ function remove_work_tag(tag) {
     $(tag).remove();
 }
 
-function create_work_tag(val, item, hiddenItem) {
+function create_work_tag(val, item, hiddenItem, inputItem) {
   var tag = $('<li id="tag_li"><span>'+val+'</span></li>');
-  var removeTag = $('<a><span class="text-icon">\xd7</span></a>')
+  var removeTag = $('<a class="close_icon_link"><span class="close_icon">\xd7</span></a>')
     .click(function(e) {
       remove_work_tag(tag);
     });
   tag.append(removeTag);
+  inputItem.detach();
   $(item).append(tag);
+  $(item).append(inputItem);
+  inputItem.focus();
   var hiddenTag = $(hiddenItem).val();
   if (hiddenTag != '') {
     $(hiddenItem).val(hiddenTag + "," + val);
@@ -67,7 +70,9 @@ $('#work_type').change(function() {
     source: '/tag_suggestions/?type=0',
     select: function(event, ui) {
       $('#0_tags_filter').val('');
-      create_work_tag(ui.item.label, "#0_tags_div ul", "#0_tags_hidden");
+      var inputItem = $('#0_tags_filter');
+      console.log(inputItem);
+      create_work_tag(ui.item.label, "#0_tags_div ul", "#0_tags_hidden", inputItem);
       return false;
     }
   });
@@ -78,7 +83,7 @@ $('#work_type').change(function() {
       var tmpVal = $('#0_tags_filter').val();
       if (tmpVal != '') {
         $('#0_tags_filter').val('');
-        create_work_tag(tmpVal, "#0_tags_div ul", "#0_tags_hidden");
+        create_work_tag(tmpVal, "#0_tags_div ul", "#0_tags_hidden", $('#0_tags_filter'));
         e.preventDefault();
       }
     }
