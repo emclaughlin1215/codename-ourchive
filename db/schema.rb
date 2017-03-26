@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322215106) do
+ActiveRecord::Schema.define(version: 20170326131515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,9 +57,8 @@ ActiveRecord::Schema.define(version: 20170322215106) do
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
     t.integer  "work_id"
+    t.index ["work_id"], name: "index_chapters_on_work_id", using: :btree
   end
-
-  add_index "chapters", ["work_id"], name: "index_chapters_on_work_id", using: :btree
 
   create_table "collections", force: :cascade do |t|
     t.integer  "mod_id"
@@ -181,11 +179,10 @@ ActiveRecord::Schema.define(version: 20170322215106) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "username"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["username"], name: "index_users_on_username", unique: true, using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   create_table "work_tags", force: :cascade do |t|
     t.integer  "tag_id"
@@ -220,9 +217,9 @@ ActiveRecord::Schema.define(version: 20170322215106) do
     t.datetime "updated_at",     null: false
     t.integer  "user_id"
     t.integer  "users_id"
+    t.string   "title"
+    t.index ["users_id"], name: "index_works_on_users_id", using: :btree
   end
-
-  add_index "works", ["users_id"], name: "index_works_on_users_id", using: :btree
 
   add_foreign_key "works", "users"
 end

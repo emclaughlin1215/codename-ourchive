@@ -16,9 +16,10 @@ class WorkCreationForm
     attribute :zero_tags, String
     attribute :two_tags, String
     attribute :three_tags, String
-
+    attribute :work_title, String
+    
     validates :work_summary, presence: true
-
+    validates :work_title, presence: true
     attr_reader :work
 
     def save
@@ -38,7 +39,7 @@ class WorkCreationForm
 
     def persist!
         @work = Work.create!(work_summary: work_summary, is_complete: is_complete, series_id: series_id, collection_id: collection_id,
-            word_count: word_count, total_chapters: total_chapters, is_series: is_series, user_id: user_id)
+            word_count: word_count, total_chapters: total_chapters, is_series: is_series, user_id: user_id, title: work_title)
         chapter = @work.chapters.create!(body_text: body_text, chapter_summary: work_summary, chapter_number: 1)
         one_tags_split = one_tags.to_s.split(",")
         one_tags_split.each do |tag|
