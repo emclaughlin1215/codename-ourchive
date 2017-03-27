@@ -23,8 +23,17 @@ function create_work_tag(val, item, hiddenItem, inputItem) {
 }
 
 $(document).ready(function() {  
+  var work_type;
+    work_type = $('#work_creation_form_work_type :selected').val();
+    if (work_type == '1'){
+      $('#1_form').show();
+    }
+
+    else{
+      $('#1_form').hide()
+    }
   $('#multi_chapter').change(function(){
-      if ($(this).is(":checked")){ 
+    if ($(this).is(":checked")){ 
         $('#chapter_count').show()
         $('#multi_chapter_buttons').show() 
         $('#chapter_textbox').show()
@@ -45,18 +54,17 @@ $(document).ready(function() {
       }
   });
 
-$('#work_type').change(function() {
-  var work_type;
-
-  work_type = $('#work_type :selected').val();
-  if (work_type == '1'){
-    $('#1_form').show();
-  }
+  $('#work_creation_form_work_type').change(function() {
+    var work_type;
+    work_type = $('#work_creation_form_work_type :selected').val();
+    if (work_type == '1'){
+      $('#1_form').show();
+    }
           
-  else{
-    $('#1_form').hide() 
-  }
-});
+    else{
+      $('#1_form').hide() 
+    }
+  });
   $('#in_collection').change(function(){
       if ($(this).is(":checked")) {
         $('#collection_id').show()  

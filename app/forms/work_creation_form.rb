@@ -17,7 +17,8 @@ class WorkCreationForm
     attribute :two_tags, String
     attribute :three_tags, String
     attribute :work_title, String
-    
+    attribute :work_type, Integer    
+
     validates :work_summary, presence: true
     validates :work_title, presence: true
     attr_reader :work
@@ -30,7 +31,14 @@ class WorkCreationForm
             false
         end
     end
-
+    def create_for_edit(work)
+      work_summary = work.work_summary
+      is_complete = work.is_complete
+      series_id = work.series_id
+      user_id = work.user_id
+      work_title = work.title
+      work_type = work.work_type
+    end
     def set_user!(user)
         self.user_id = user.id
     end
@@ -39,7 +47,7 @@ class WorkCreationForm
 
     def persist!
         @work = Work.create!(work_summary: work_summary, is_complete: is_complete, series_id: series_id, collection_id: collection_id,
-            word_count: word_count, total_chapters: total_chapters, is_series: is_series, user_id: user_id, title: work_title)
+            word_count: word_count, total_chapters: total_chapters, is_series: is_series, user_id: user_id, title: work_title, work_type: work_type)
         chapter = @work.chapters.create!(body_text: body_text, chapter_summary: work_summary, chapter_number: 1)
         one_tags_split = one_tags.to_s.split(",")
         one_tags_split.each do |tag|

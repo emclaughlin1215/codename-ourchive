@@ -15,6 +15,7 @@ class WorksController < ApplicationController
   # GET /works/new
   def new
     if current_user
+      @work_types = WorkType.all
       @work_creation_form = WorkCreationForm.new
     else
       redirect_to new_user_session_path, notice: 'You are not currently logged in.'
@@ -23,6 +24,8 @@ class WorksController < ApplicationController
 
   # GET /works/1/edit
   def edit
+    @work = Work.find(params[:id])
+    @work_creation_form = WorkCreationForm.new(work_summary: @work.work_summary, work_title: @work.title, work_type: @work.work_type)
   end
 
   # POST /works

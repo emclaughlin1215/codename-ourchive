@@ -12,13 +12,7 @@
   <% end %>
   <div class="field">
     Please choose a type of work to post:
-    <select id="work_type">
-      <option value="" selected="selected">Select a work type</option>
-      <option value="0"><%= WorkConfig.config["0"]["friendly"] %></option>
-      <option value="1"><%= WorkConfig.config["1"]["friendly"] %></option>
-      <option value="2"><%= WorkConfig.config["2"]["friendly"] %></option>
-      <option value="3"><%= WorkConfig.config["3"]["friendly"] %></option>
-   </select>
+    <%= f.select(:work_type, WorkType.all.collect {|t| [ t.type_name, t.type_key ] }, :selected => f.object.work_type) %>
   </div>
   <div id="1_form" style="display:none;">
     <div class="field">
