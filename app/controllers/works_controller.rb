@@ -25,7 +25,13 @@ class WorksController < ApplicationController
   # GET /works/1/edit
   def edit
     @work = Work.find(params[:id])
-    @work_creation_form = WorkCreationForm.new(work_summary: @work.work_summary, work_title: @work.title, work_type: @work.work_type)
+    @chapters = @work.chapters
+    puts "CHAPTER COUNT"
+    puts @chapters.count
+    puts @chapters.first.body_text
+    if (@chapters.count < 2)
+      @work_creation_form = WorkCreationForm.new(work_summary: @work.work_summary, work_title: @work.title, work_type: @work.work_type, is_complete: @work.is_complete, is_series: @work.is_series, body_text: @chapters.first.body_text)
+    end
   end
 
   # POST /works

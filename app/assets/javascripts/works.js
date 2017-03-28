@@ -36,12 +36,12 @@ $(document).ready(function() {
     if ($(this).is(":checked")){ 
         $('#chapter_count').show()
         $('#multi_chapter_buttons').show() 
-        $('#chapter_textbox').show()
-        $('#work_textbox').hide()
+        $('#chapter_text_label').show()
+        $('#work_text_label').hide()
       } else {
         $('#chapter_count').hide()
-        $('#chapter_textbox').hide()
-        $('#work_textbox').show()
+        $('#chapter_text_label').hide()
+        $('#work_text_label').show()
         $('#multi_chapter_buttons').hide()
       }
   });
