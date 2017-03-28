@@ -1,6 +1,6 @@
 class WorksController < ApplicationController
   before_action :set_work, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_work_form, only: [:edit]
   # GET /works
   # GET /works.json
   def index
@@ -26,30 +26,33 @@ class WorksController < ApplicationController
   def edit
     @work = Work.find(params[:id])
     @chapters = @work.chapters
-    puts "CHAPTER COUNT"
-    puts @chapters.count
-    puts @chapters.first.body_text
     if (@chapters.count < 2)
-      @work_creation_form = WorkCreationForm.new(work_summary: @work.work_summary, work_title: @work.title, work_type: @work.work_type, is_complete: @work.is_complete, is_series: @work.is_series, body_text: @chapters.first.body_text)
+      @work_creation_form.set_user!(current_user)
     end
   end
 
   # POST /works
   # POST /works.json
   def create
-    @work_creation_form = WorkCreationForm.new(params[:work_creation_form])
-    @work_creation_form.set_user!(current_user)
-    respond_to do |format|
-      if @work_creation_form.save
+    work_id = params[:work_creation_form][:work_id].to_s
+    if (work_id == "")
+      @work_creation_form = WorkCreationForm.new(params[:work_creation_form])
+      @work_creation_form.set_user!(current_user)
+      respond_to do |format|
+        if @work_creation_form.save
           format.html { redirect_to works_path, notice: 'Work was successfully created.' }
           format.json { render :show, status: :created, location: @work }
-      else
-        format.html { render :new }
-        format.json { render json: @work_creation_form.errors, status: :unprocessable_entity }
+        else
+          format.html { render :new }
+          format.json { render json: @work_creation_form.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      @work_creation_form = WorkCreationForm.new(params[:work_creation_form])
+      @work_creation_form.update()
+      redirect_to works_path, notice: 'Work was successfully updated.'
     end
   end
-
   # PATCH/PUT /works/1
   # PATCH/PUT /works/1.json
   def update
@@ -79,7 +82,10 @@ class WorksController < ApplicationController
     def set_work
       @work = Work.find(params[:id])
     end
-
+    def set_work_form
+      @work_creation_form = WorkCreationForm.new(work_summary: @work.work_summary, work_title: @work.title, is_series: @work.is_series, work_type: @work.work_type, is_complete: @work.is_complete,
+        work_id: @work.id)
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_params
       params.require(:work).permit(:work_summary, :is_series, :is_complete, :series_id, :collection_id, :word_count, :total_chapters)

@@ -18,6 +18,7 @@ class WorkCreationForm
     attribute :three_tags, String
     attribute :work_title, String
     attribute :work_type, Integer    
+    attribute :work_id, Integer
 
     validates :work_summary, presence: true
     validates :work_title, presence: true
@@ -31,18 +32,21 @@ class WorkCreationForm
             false
         end
     end
-    def create_for_edit(work)
+    def create_for_edit!(work)
+      work_id = work.id
       work_summary = work.work_summary
       is_complete = work.is_complete
-      series_id = work.series_id
-      user_id = work.user_id
+      is_series = work.is_series
       work_title = work.title
-      work_type = work.work_type
+      work_type = work_type
     end
     def set_user!(user)
         self.user_id = user.id
     end
-
+    def update()
+      Work.update(work_id, :work_summary => work_summary, :title => work_title, :series_id => series_id, :is_complete => is_complete, :collection_id => collection_id,
+        :word_count => word_count, :total_chapters => total_chapters)
+    end
     private
 
     def persist!
@@ -79,5 +83,8 @@ class WorkCreationForm
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
             TagSuggestion.add_tag(@tag)
         end
+    end
+    def update_work
+      puts current_work
     end
 end
