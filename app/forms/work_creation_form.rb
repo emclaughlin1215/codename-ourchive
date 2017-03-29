@@ -1,7 +1,6 @@
 class WorkCreationForm
     include ActiveModel::Model
     include Virtus.model
-
     attribute :user_id, Integer
     attribute :work_summary, String
     attribute :is_complete, Boolean
@@ -19,7 +18,7 @@ class WorkCreationForm
     attribute :work_title, String
     attribute :work_type, Integer    
     attribute :work_id, Integer
-
+   
     validates :work_summary, presence: true
     validates :work_title, presence: true
     attr_reader :work
@@ -56,7 +55,7 @@ class WorkCreationForm
         one_tags_split = one_tags.to_s.split(",")
         one_tags_split.each do |tag|
             @tag = Tag.where(text: tag, type_key: 1).first_or_create
-            WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
+            WorkTag.where(tag_id: @tag.id, work_id: @work.id).first_or_create
             TagSuggestion.add_tag(@tag)
         end
         four_tags_split = four_tags.to_s.split(",")

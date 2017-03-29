@@ -74,6 +74,11 @@
     <div class="field" id="1_tags_div">
       <%= f.label TagConfig.config["1"]["friendly"] %><br>
       <ul id="1_tags_list" class="tag_ul">
+        <% if @one_tags_list %>
+          <% @one_tags_list.each do |i| %>
+  	    <li class="tag_li"><%= i %></li>
+	  <% end %>
+        <% end %>
         <li class="new_li"><input type="text" class="new_textBox" id="1_tags_filter"/>
       </ul>
       <%= f.hidden_field :one_tags, :id => '1_tags_hidden' %>

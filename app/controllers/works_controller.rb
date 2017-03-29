@@ -1,6 +1,7 @@
 class WorksController < ApplicationController
   before_action :set_work, only: [:show, :edit, :update, :destroy]
   before_action :set_work_form, only: [:edit]
+  before_action :create_tags_lists, only: [:edit, :update]
   # GET /works
   # GET /works.json
   def index
@@ -85,6 +86,9 @@ class WorksController < ApplicationController
     def set_work_form
       @work_creation_form = WorkCreationForm.new(work_summary: @work.work_summary, work_title: @work.title, is_series: @work.is_series, work_type: @work.work_type, is_complete: @work.is_complete,
         work_id: @work.id)
+    end
+    def create_tags_lists
+      @one_tags_list = WorkTag.where(work_id: @work.id)
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_params
