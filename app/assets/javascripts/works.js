@@ -4,8 +4,15 @@ function remove_work_tag(tag) {
 function removetag(e)
 {
   var target = $(event.target).parent().parent();
-  console.log(target)
   remove_work_tag(target);
+  var id = $(target).attr('id');
+  var hiddenTag = $('#tags_to_remove').val();
+  if (hiddenTag != '') {
+    $('#tags_to_remove').val(hiddenTag + "," + id);
+  }
+  else {
+    $('#tags_to_remove').val(id);
+  }
 }
 function create_work_tag(val, item, hiddenItem, inputItem) {
   var tag = $('<li class="tag_li"><span>'+val+'</span></li>');

@@ -18,7 +18,7 @@ class WorkCreationForm
     attribute :work_title, String
     attribute :work_type, Integer    
     attribute :work_id, Integer
-   
+    attribute :tags_to_remove, String
     validates :work_summary, presence: true
     validates :work_title, presence: true
     attr_reader :work
@@ -86,6 +86,10 @@ class WorkCreationForm
         end
     end
     def update_tags
+      tags_to_remove_split = tags_to_remove.to_s.split(",")
+      tags_to_remove_split.each do |tag|
+        @work.tags.delete(tag)
+      end
       three_tags_split = three_tags.to_s.split(",")
       three_tags_split.each do |tag|
           @tag = Tag.where(text: tag, type_key: 3).first_or_create
