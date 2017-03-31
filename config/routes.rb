@@ -20,7 +20,11 @@ Rails.application.routes.draw do
   resources :histories
   resources :blacklists
   resources :chapters
-  resources :works
+  resources :works do
+    member do
+      get 'new_chapter_on_work'
+    end
+  end
   resources :tests
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

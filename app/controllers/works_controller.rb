@@ -7,7 +7,11 @@ class WorksController < ApplicationController
   def index
     @works = Work.where(user_id: current_user.id)
   end
-
+  def new_chapter_on_work
+    respond_to do |format|
+      format.js {render layout: false} # Add this line to you respond_to block
+    end
+  end
   # GET /works/1
   # GET /works/1.json
   def show

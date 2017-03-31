@@ -67,6 +67,11 @@
       </div>
       <%= f.text_area :body_text %>
     </div>
+    <%= link_to 'Chapter', new_chapter_on_work_work_url(:work_id), remote: true %>
+    <div class="field">
+      <ul id="new_chapters">
+      </ul>
+    </div>
     <%= f.hidden_field :tags_to_remove, :id => 'tags_to_remove' %>
     <div class="field" id="1_tags_div">
       <%= f.label TagConfig.config["1"]["friendly"] %><br>
