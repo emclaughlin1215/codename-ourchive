@@ -86,6 +86,11 @@
     <div class="field" id="4_tags_div">
       <%= f.label TagConfig.config["4"]["friendly"] %><br>
       <ul id="4_tags_list" class="tag_ul">
+        <% if @four_tags_list %>
+          <% @four_tags_list.each do |i| %>
+            <li class="tag_li"><%= i %></li>
+          <% end %>
+        <% end %>
         <li class="new_li"><input type="text" class="new_textBox" id="4_tags_filter"/>
       </ul>
       <%= f.hidden_field :four_tags, :id => '4_tags_hidden' %>
@@ -93,13 +98,23 @@
     <div class="field" id="0_tags_div">
       <%= f.label TagConfig.config["0"]["friendly"] %><br>
       <ul id="0_tags_list" class="tag_ul">
-          <li class="new_li"><input type="text" class="new_textBox" id ="0_tags_filter"></li>
+        <% if @zero_tags_list %>
+          <% @zero_tags_list.each do |i| %>
+            <li class="tag_li"><%= i %></li>
+          <% end %>
+        <% end %>  
+        <li class="new_li"><input type="text" class="new_textBox" id ="0_tags_filter"></li>
       </ul> 
 	<%= f.hidden_field :zero_tags, :id => '0_tags_hidden' %>
     </div>
     <div class="field" id="2_tags_div">
       <%= f.label TagConfig.config["2"]["friendly"] %><br>
       <ul id="2_tags_list" class="tag_ul">
+        <% if @two_tags_list %>
+          <% @two_tags_list.each do |i| %>
+            <li class="tag_li"><%= i %></li>
+          <% end %>
+        <% end %>
         <li class="new_li"><input type="text" class="new_textBox" id="2_tags_filter"/>
       </ul>
       <%= f.hidden_field :two_tags, :id => '2_tags_hidden' %>
@@ -107,6 +122,11 @@
     <div class="field" id="3_tags_div">
       <%= f.label TagConfig.config["3"]["friendly"] %><br>
       <ul id="3_tags_list" class="tag_ul">
+        <% if @three_tags_list %>
+          <% @three_tags_list.each do |i| %>
+            <li class="tag_li"><%= i %></li>
+          <% end %>
+        <% end %>
         <li class="new_li"><input type="text" class="new_textBox" id="3_tags_filter"/>
       </ul>
       <%= f.hidden_field :three_tags, :id => '3_tags_hidden' %> 

@@ -88,7 +88,11 @@ class WorksController < ApplicationController
         work_id: @work.id)
     end
     def create_tags_lists
-      @one_tags_list = WorkTag.where(work_id: @work.id)
+      @zero_tags_list = @work.tags.where(type_key: 0).pluck(:text)
+      @one_tags_list = @work.tags.where(type_key: 1).pluck(:text)
+      @two_tags_list = @work.tags.where(type_key: 2).pluck(:text)
+      @three_tags_list = @work.tags.where(type_key: 3).pluck(:text)
+      @four_tags_list = @work.tags.where(type_key: 4).pluck(:text)
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_params
