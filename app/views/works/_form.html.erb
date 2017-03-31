@@ -49,10 +49,6 @@
       <%= f.number_field :collection_id %>
     </div>
     <div class="field">
-      <%= f.label :word_count %><br>
-      <%= f.number_field :word_count %>
-    </div>
-    <div class="field">
       <label>
         <input id="multi_chapter" type="checkbox" value="1" />
           Multi-chapter?
@@ -76,7 +72,7 @@
       <ul id="1_tags_list" class="tag_ul">
         <% if @one_tags_list %>
           <% @one_tags_list.each do |i| %>
-  	    <li class="tag_li"><%= i %></li>
+  	    <li class="tag_li"><%= i %><a class="close_icon_link" onclick="removetag(event)"><span class="close_icon">x</span></a></li>
 	  <% end %>
         <% end %>
         <li class="new_li"><input type="text" class="new_textBox" id="1_tags_filter"/>
@@ -88,7 +84,7 @@
       <ul id="4_tags_list" class="tag_ul">
         <% if @four_tags_list %>
           <% @four_tags_list.each do |i| %>
-            <li class="tag_li"><%= i %></li>
+            <li class="tag_li"><%= i %><a class="close_icon_link" onclick="removetag(event)"><span class="close_icon">x</span></a></li>
           <% end %>
         <% end %>
         <li class="new_li"><input type="text" class="new_textBox" id="4_tags_filter"/>
@@ -100,7 +96,7 @@
       <ul id="0_tags_list" class="tag_ul">
         <% if @zero_tags_list %>
           <% @zero_tags_list.each do |i| %>
-            <li class="tag_li"><%= i %></li>
+            <li class="tag_li"><%= i %><a class="close_icon_link" onclick="removetag(event)"><span class="close_icon">x</span></a></li>
           <% end %>
         <% end %>  
         <li class="new_li"><input type="text" class="new_textBox" id ="0_tags_filter"></li>
@@ -112,7 +108,7 @@
       <ul id="2_tags_list" class="tag_ul">
         <% if @two_tags_list %>
           <% @two_tags_list.each do |i| %>
-            <li class="tag_li"><%= i %></li>
+            <li class="tag_li"><%= i %><a class="close_icon_link" onclick="removetag(event)"><span class="close_icon">x</span></a></li>
           <% end %>
         <% end %>
         <li class="new_li"><input type="text" class="new_textBox" id="2_tags_filter"/>
@@ -124,7 +120,7 @@
       <ul id="3_tags_list" class="tag_ul">
         <% if @three_tags_list %>
           <% @three_tags_list.each do |i| %>
-            <li class="tag_li"><%= i %></li>
+            <li class="tag_li"><%= i %><a class="close_icon_link" onclick="removetag(event)"><span class="close_icon">x</span></a></li>
           <% end %>
         <% end %>
         <li class="new_li"><input type="text" class="new_textBox" id="3_tags_filter"/>

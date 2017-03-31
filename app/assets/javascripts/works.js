@@ -1,7 +1,12 @@
 function remove_work_tag(tag) {
     $(tag).remove();
 }
-
+function removetag(e)
+{
+  var target = $(event.target).parent().parent();
+  console.log(target)
+  remove_work_tag(target);
+}
 function create_work_tag(val, item, hiddenItem, inputItem) {
   var tag = $('<li class="tag_li"><span>'+val+'</span></li>');
   var removeTag = $('<a class="close_icon_link"><span class="close_icon">\xd7</span></a>')

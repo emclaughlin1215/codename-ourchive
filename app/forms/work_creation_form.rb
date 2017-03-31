@@ -51,8 +51,8 @@ class WorkCreationForm
     private
 
     def persist!
-        @work = Work.create!(work_summary: work_summary, is_complete: is_complete, series_id: series_id, collection_id: collection_id,
-            word_count: word_count, total_chapters: total_chapters, is_series: is_series, user_id: user_id, title: work_title, work_type: work_type)
+        @work = Work.create!(work_summary: work_summary, is_complete: is_complete, series_id: series_id, collection_id: collection_id, 
+            word_count: body_text.split.size, total_chapters: total_chapters, is_series: is_series, user_id: user_id, title: work_title, work_type: work_type)
         chapter = @work.chapters.create!(body_text: body_text, chapter_summary: work_summary, chapter_number: 1)
         one_tags_split = one_tags.to_s.split(",")
         one_tags_split.each do |tag|
