@@ -48,16 +48,6 @@
       <%= f.label :collection_id %><br>
       <%= f.number_field :collection_id %>
     </div>
-    <div class="field">
-      <label>
-        <input id="multi_chapter" type="checkbox" value="1" />
-          Multi-chapter?
-      </label>
-    </div>
-    <div style="display:none;" class="field" id="chapter_count">
-        <%= f.label :total_chapters %><br>
-        <%= f.number_field :total_chapters %>
-    </div>
     <% if !@is_edit%>
       <div class="field" id="work_textbox">
         <div style="display:none;" id="chapter_text_label">
@@ -68,14 +58,14 @@
         </div>
         <%= f.text_area :body_text %>
       </div>
-      <%= link_to 'Chapter', new_chapter_on_work_work_url(:work_id), remote: true %>
+      <div class="field">
+        <ul id="new_chapters" class="chapters_ul">
+        </ul>
+      </div>
+      <%= link_to 'Add Chapter', new_chapter_on_work_work_url(:work_id), remote: true, :id => 'add_chapter_link' %>
     <%else%>
       <%= render :partial => "works/show_chapter", :collection => @chapters %>
     <%end%>
-    <div class="field">
-      <ul id="new_chapters">
-      </ul>
-    </div>
     <%= f.hidden_field :tags_to_remove, :id => 'tags_to_remove' %>
     <div class="field" id="1_tags_div">
       <%= f.label TagConfig.config["1"]["friendly"] %><br>

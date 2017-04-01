@@ -44,18 +44,11 @@ $(document).ready(function() {
     else{
       $('#1_form').hide()
     }
-  $('#multi_chapter').change(function(){
-    if ($(this).is(":checked")){ 
+  $('#add_chapter_link').one('click', function() {
         $('#chapter_count').show()
         $('#multi_chapter_buttons').show() 
         $('#chapter_text_label').show()
         $('#work_text_label').hide()
-      } else {
-        $('#chapter_count').hide()
-        $('#chapter_text_label').hide()
-        $('#work_text_label').show()
-        $('#multi_chapter_buttons').hide()
-      }
   });
 
   $('#is_series').change(function(){
