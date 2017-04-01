@@ -1,4 +1,8 @@
-    <%= label_tag 'title', "Chapter Title" %><br>
-    <%= text_field_tag 'titles[]' %><br>
-    <%= label_tag 'texts', "Chapter Text" %><br>
-    <%= text_area_tag 'chapters[]' %><br>
+<div class="form-group">
+  <%= label_tag 'title', "Chapter Title", style:'margin-top:30px' %>
+  <%= text_field_tag 'titles[]', nil, class: 'form-control' %>
+</div>
+<div class="form_group">
+    <%= label_tag 'texts', "Chapter Text" %>
+    <%= text_area_tag 'chapters[]', nil, class: 'form-control', rows: 10 %>
+</div>
