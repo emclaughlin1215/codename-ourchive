@@ -19,6 +19,7 @@ class WorkCreationForm
     attribute :work_type, Integer    
     attribute :work_id, Integer
     attribute :tags_to_remove, String
+    
     validates :work_summary, presence: true
     validates :work_title, presence: true
     attr_reader :work
@@ -30,6 +31,10 @@ class WorkCreationForm
         else
             false
         end
+    end
+    def set_chapters(chapters_param, titles_param)
+      @chapters = chapters_param
+      @chapter_titles = titles_param
     end
     def create_for_edit!(work)
       work_id = work.id
@@ -53,7 +58,13 @@ class WorkCreationForm
     def persist!
         @work = Work.create!(work_summary: work_summary, is_complete: is_complete, series_id: series_id, collection_id: collection_id, 
             word_count: body_text.split.size, total_chapters: total_chapters, is_series: is_series, user_id: user_id, title: work_title, work_type: work_type)
-        chapter = @work.chapters.create!(body_text: body_text, chapter_summary: work_summary, chapter_number: 1)
+        chapter = @work.chapters.create!(body_text: body_text, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+        counter = 1
+        @chapters.each do |chapter|
+          @work.chapters.create!(body_text: chapter, chapter_number: counter, title: @chapter_titles[counter - 1])
+          counter = counter + 1
+        end
+        # todo save chapter list
         one_tags_split = one_tags.to_s.split(",")
         one_tags_split.each do |tag|
             @tag = Tag.where(text: tag, type_key: 1).first_or_create

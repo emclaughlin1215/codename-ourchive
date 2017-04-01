@@ -58,16 +58,20 @@
         <%= f.label :total_chapters %><br>
         <%= f.number_field :total_chapters %>
     </div>
-    <div class="field" id="work_textbox">
-      <div style="display:none;" id="chapter_text_label">
-        <%= f.label :body_text, "Chapter text" %><br>
+    <% if !@is_edit%>
+      <div class="field" id="work_textbox">
+        <div style="display:none;" id="chapter_text_label">
+          <%= f.label :body_text, "Chapter text" %><br>
+        </div>
+        <div id="work_text_label">
+          <%= f.label :body_text, "Work text"%><br>
+        </div>
+        <%= f.text_area :body_text %>
       </div>
-      <div id="work_text_label">
-        <%= f.label :body_text, "Work text"%><br>
-      </div>
-      <%= f.text_area :body_text %>
-    </div>
-    <%= link_to 'Chapter', new_chapter_on_work_work_url(:work_id), remote: true %>
+      <%= link_to 'Chapter', new_chapter_on_work_work_url(:work_id), remote: true %>
+    <%else%>
+      <%= render :partial => "works/show_chapter", :collection => @chapters %>
+    <%end%>
     <div class="field">
       <ul id="new_chapters">
       </ul>

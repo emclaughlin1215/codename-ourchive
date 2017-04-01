@@ -31,9 +31,8 @@ class WorksController < ApplicationController
   def edit
     @work = Work.find(params[:id])
     @chapters = @work.chapters
-    if (@chapters.count < 2)
-      @work_creation_form.set_user!(current_user)
-    end
+    @work_creation_form.set_user!(current_user)
+    @is_edit = true
   end
 
   # POST /works
@@ -43,6 +42,7 @@ class WorksController < ApplicationController
     if (work_id == "")
       @work_creation_form = WorkCreationForm.new(params[:work_creation_form])
       @work_creation_form.set_user!(current_user)
+      @work_creation_form.set_chapters(params[:chapters], params[:titles])
       respond_to do |format|
         if @work_creation_form.save
           format.html { redirect_to works_path, notice: 'Work was successfully created.' }

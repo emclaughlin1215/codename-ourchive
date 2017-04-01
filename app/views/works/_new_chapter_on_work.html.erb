@@ -1,1 +1,8 @@
-<%= text_area_tag 'chapters[]' %>
+  <div class="field">
+    <%= label_tag 'title', "Chapter Title" %><br>
+    <%= text_area_tag 'titles[]' %>
+  </div>
+  <div class="field">
+    <%= label_tag 'texts', "Chapter Text" %><br>
+    <%= text_area_tag 'chapters[]' %>
+  </div>
