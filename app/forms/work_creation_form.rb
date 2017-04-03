@@ -19,7 +19,8 @@ class WorkCreationForm
     attribute :work_type, Integer    
     attribute :work_id, Integer
     attribute :tags_to_remove, String
-    
+    attribute :body_external, String
+ 
     validates :work_summary, presence: true
     validates :work_title, presence: true
     attr_reader :work

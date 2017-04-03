@@ -15,7 +15,7 @@
     <%= f.select(:work_type, WorkType.all.collect {|t| [ t.type_name, t.type_key ] }, :selected => f.object.work_type) %>
     <%= f.hidden_field :work_id %>
   </div>
-  <div id="1_form" style="display:none;">
+  <div id="1_form">
     <div class="form-group">
       <%= f.label :work_title %><br>
       <%= f.text_field :work_title, :class=>"form-control" %>
@@ -52,7 +52,14 @@
         <div id="work_text_label">
           <%= f.label :body_text, "Work text"%><br>
         </div>
-        <%= f.text_area :body_text, :class=>"form-control", :rows=>"20" %>
+        <div style="display:none;" id="chapter_external_label">
+          <%= f.label "Chapter URL" %><br>
+        </div>
+        <div id="work_external_label">
+          <%= f.label "Work URL"%><br>
+        </div>
+        <%= f.text_area :body_text, :class=>"form-control", :rows=>"20", :id=>"body_text_field" %>
+        <%= f.text_field :body_external, :class=>"form_control", :id=>"body_external_field", :style=>"display:none;" %>
       </div>
       <div class="field">
         <ul id="new_chapters" class="chapters_ul">

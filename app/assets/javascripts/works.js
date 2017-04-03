@@ -38,11 +38,15 @@ $(document).ready(function() {
   var work_type;
     work_type = $('#work_creation_form_work_type :selected').val();
     if (work_type == '1'){
-      $('#1_form').show();
+      $('#work_text_label').show();
+      $('#body_text_field').show();
     }
 
     else{
-      $('#1_form').hide()
+      $('#work_text_label').hide();
+      $('#body_text_field').hide();
+      $('#work_external_label').show();
+      $('#body_external_field').show();
     }
   $('#add_chapter_link').one('click', function() {
         $('#chapter_count').show()
@@ -63,12 +67,20 @@ $(document).ready(function() {
     var work_type;
     work_type = $('#work_creation_form_work_type :selected').val();
     if (work_type == '1'){
-      $('#1_form').show();
+      $('#work_text_label').show();
+      $('#body_text_field').show();
+      $('#work_external_label').hide();
+      $('#body_external_field').hide();
     }
-          
+
     else{
-      $('#1_form').hide() 
-    }
+      $('#work_text_label').hide();
+      $('#chapter_text_label').hide();
+      $('#body_text_field').hide();
+      $('#work_external_label').show();
+      $('#body_external_field').show();
+      $('#new_chapters').hide();
+    }    
   });
   $('#in_collection').change(function(){
       if ($(this).is(":checked")) {
