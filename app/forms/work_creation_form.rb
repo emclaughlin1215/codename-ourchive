@@ -59,10 +59,16 @@ class WorkCreationForm
     def persist!
         @work = Work.create!(work_summary: work_summary, is_complete: is_complete, series_id: series_id,
             word_count: body_text.split.size, total_chapters: total_chapters, is_series: is_series, user_id: user_id, title: work_title, work_type: work_type)
-        chapter = @work.chapters.create!(body_text: body_text, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+        if (work_type == 1)
+          chapter = @work.chapters.create!(body_text: body_text, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+        elsif (work_type == 2)
+          chapter = @work.chapters.create!(body_image: body_external, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+        elsif(work_type == 0)
+          chapter = @work.chapters.create!(body_audio: body_external, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+        end
         counter = 1
         @chapters.each do |chapter|
-          @work.chapters.create!(body_text: chapter, chapter_number: counter, title: @chapter_titles[counter - 1])
+          create_chapter(chapter, counter)
           counter = counter + 1
         end
         one_tags_split = one_tags.to_s.split(",")
@@ -94,6 +100,15 @@ class WorkCreationForm
             @tag = Tag.where(text: tag, type_key: 0).first_or_create
             WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
             TagSuggestion.add_tag(@tag)
+        end
+    end
+    def create_chapter(chapter, counter)
+      if (work_type == 1)
+          @work.chapters.create!(body_text: chapter, chapter_summary: work_summary, chapter_number: counter+1, title: @chapter_titles[counter - 1])
+        elsif (work_type == 2)
+          @work.chapters.create!(body_image: chapter, chapter_summary: work_summary, chapter_number: counter+1, title: @chapter_titles[counter - 1])
+        elsif(work_type == 0)
+          @work.chapters.create!(body_audio: chapter, chapter_summary: work_summary, chapter_number: counter+1, title: @chapter_titles[counter - 1])
         end
     end
     def update_tags
