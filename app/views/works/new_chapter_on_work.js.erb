@@ -1,1 +1,10 @@
-$("#new_chapters").append("<%= escape_javascript(render partial: 'new_chapter_on_work') %>");
+var work_type;
+work_type = $('#work_creation_form_work_type :selected').val();
+console.log("OWKR TYPE");
+console.log(work_type);
+if (work_type == '1'){
+  $("#new_chapters").append("<%= escape_javascript(render partial: 'new_chapter_on_work') %>");
+}
+else {
+  $("#new_chapters").append("<%= escape_javascript(render partial: 'new_external_chapter_on_work') %>");
+}

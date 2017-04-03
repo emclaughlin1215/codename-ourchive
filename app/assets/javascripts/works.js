@@ -1,6 +1,21 @@
 function remove_work_tag(tag) {
     $(tag).remove();
 }
+
+function add_chapter_first_click() {
+  $('#chapter_count').show();
+  $('#multi_chapter_buttons').show();
+  var work_type;
+  work_type = $('#work_creation_form_work_type :selected').val();
+  if (work_type == '1'){
+    $('#work_text_label').hide();
+    $('#chapter_text_label').show();
+  }
+  else {
+    $('#chapter_external_label').show();
+    $('#work_external_label').hide();
+  }
+}
 function removetag(e)
 {
   var target = $(event.target).parent().parent();
@@ -49,10 +64,7 @@ $(document).ready(function() {
       $('#body_external_field').show();
     }
   $('#add_chapter_link').one('click', function() {
-        $('#chapter_count').show()
-        $('#multi_chapter_buttons').show() 
-        $('#chapter_text_label').show()
-        $('#work_text_label').hide()
+    add_chapter_first_click();
   });
 
   $('#is_series').change(function(){
@@ -64,6 +76,10 @@ $(document).ready(function() {
   });
 
   $('#work_creation_form_work_type').change(function() {
+    $('#new_chapters').empty();
+    $('#add_chapter_link').one('click', function() {
+      add_chapter_first_click();
+    });
     var work_type;
     work_type = $('#work_creation_form_work_type :selected').val();
     if (work_type == '1'){
@@ -71,6 +87,7 @@ $(document).ready(function() {
       $('#body_text_field').show();
       $('#work_external_label').hide();
       $('#body_external_field').hide();
+      $('#chapter_external_label').hide();
     }
 
     else{
@@ -79,7 +96,6 @@ $(document).ready(function() {
       $('#body_text_field').hide();
       $('#work_external_label').show();
       $('#body_external_field').show();
-      $('#new_chapters').hide();
     }    
   });
   $('#in_collection').change(function(){
