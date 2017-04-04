@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+gem 'elasticsearch-model'
 gem 'virtus'
 gem 'responders'
 gem 'devise'
