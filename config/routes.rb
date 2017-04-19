@@ -26,11 +26,13 @@ Rails.application.routes.draw do
     end
   end
   resources :tests
+  resources :search
+  get 'search_works' => "search#show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'tests#index'
+  root 'search#index'
   match '/tag_suggestions', to: 'tag_suggestions#index', via: :get
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

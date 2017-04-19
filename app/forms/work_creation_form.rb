@@ -67,9 +67,11 @@ class WorkCreationForm
           chapter = @work.chapters.create!(body_audio: body_external, chapter_summary: work_summary, chapter_number: 1, title: work_title)
         end
         counter = 1
-        @chapters.each do |chapter|
-          create_chapter(chapter, counter)
-          counter = counter + 1
+        if (@chapters)
+          @chapters.each do |chapter|
+            create_chapter(chapter, counter)
+            counter = counter + 1
+          end
         end
         one_tags_split = one_tags.to_s.split(",")
         one_tags_split.each do |tag|
