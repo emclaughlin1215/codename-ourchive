@@ -1,8 +1,7 @@
 class SearchController < ApplicationController
 
 def show
-  @results = Work.search(params[:search_term])
-  @title = @results.results.first._source.title
+  @results = Work.search(params[:search_term], fields: [{title: :word_start}, {work_summary: :word_start}])
 end
 
 private

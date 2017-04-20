@@ -1,7 +1,7 @@
 require 'elasticsearch/model'
 
 class Work < ActiveRecord::Base
-  include Elasticsearch::Model
+  searchkick word_start: [:title, :work_summary]
   belongs_to :user
   has_many :chapters
   has_many :work_tags

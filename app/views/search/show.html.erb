@@ -1,1 +1,3 @@
-<%= @title %>
+<% @results.each do |r| %>
+  <%= r.title %> | <%= r.work_summary %> <br>
+<% end %>
