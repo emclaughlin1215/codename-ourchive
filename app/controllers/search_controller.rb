@@ -6,8 +6,16 @@ def index
 end
 
 def show
-  @works = Work.search(params[:search_term], where: {work_type: params[:work_type]}, fields: [{title: :word_start}, {work_summary: :word_start}])
-  @tags = Tag.search(params[:search_term], where: {type_key: params[:tag_type]}, fields: [{text: :word_start}])
+  if (params[:work_type] == 'All')
+    @works = Work.search(params[:search_term], fields: [{title: :word_start}, {work_summary: :word_start}])
+  else
+    @works = Work.search(params[:search_term], where: {work_type: params[:work_type]}, fields: [{title: :word_start}, {work_summary: :word_start}])
+  end
+  if (params[:tag_type] == 'All')
+    @tags = Tag.search(params[:search_term], fields: [{text: :word_start}])
+  else
+    @tags = Tag.search(params[:search_term], where: {type_key: params[:tag_type]}, fields: [{text: :word_start}])
+  end
   @tag_works = Work.includes(:tags).where('tags.id in (?) or works.id in (?)', @tags.results, @works.results).references(:tags)
 
 end
