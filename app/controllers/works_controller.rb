@@ -29,7 +29,7 @@ class WorksController < ApplicationController
 
   # GET /works/1/edit
   def edit
-    @work = Work.find(params[:id])
+    @work = Work.joins(:tags).find(params[:id])
     @chapters = @work.chapters
     @work_creation_form.set_user!(current_user)
     @is_edit = true
@@ -85,18 +85,19 @@ class WorksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_work
-      @work = Work.find(params[:id])
+      @work = Work.joins(:tags).find(params[:id])
     end
     def set_work_form
       @work_creation_form = WorkCreationForm.new(work_summary: @work.work_summary, work_title: @work.title, is_series: @work.is_series, work_type: @work.work_type, is_complete: @work.is_complete,
         work_id: @work.id)
     end
     def create_tags_lists
-      @zero_tags_list = @work.tags.where(type_key: 0)
-      @one_tags_list = @work.tags.where(type_key: 1)
-      @two_tags_list = @work.tags.where(type_key: 2)
-      @three_tags_list = @work.tags.where(type_key: 3)
-      @four_tags_list = @work.tags.where(type_key: 4)
+      @tags_list = @work.tags
+      @zero_tags_list = @tags_list.select {|tag| 0 == tag.type_key}
+      @one_tags_list = @tags_list.select {|tag| 1 == tag.type_key }
+      @two_tags_list = @tags_list.select {|tag| 2 == tag.type_key }
+      @three_tags_list = @tags_list.select {|tag| 3 == tag.type_key }
+      @four_tags_list = @tags_list.select {|tag| 4 == tag.type_key}
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_params
