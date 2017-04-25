@@ -12,8 +12,8 @@ default: &default
 
 development:
   <<: *default
-  database: ourchive_dev
-  username: postgres
+  database: ourchive
+  username: ourchive_dev
   password: ourch1v3Adm1n
 
 # Warning: The database defined as "test" will be erased and

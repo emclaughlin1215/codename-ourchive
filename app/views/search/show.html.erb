@@ -1,16 +1,4 @@
 <% @tag_works.each do |r| %>
-  <dl class="dl-horizontal">  
-    <dt>Title</dt>
-    <dd><%= r.title %></dd>
-    <dt>Summary</dt>
-    <dd><%= r.work_summary %></dd>
-    <dt>Tags</dt>
-    <dd><ul class="list-inline">
-          <% r.tags.each do |t| %>
-            <li><%= t.text %></li>
-          <% end %>
-        </ul>
-    </dd>
-  </dl>
+  <%= render "result", r: r %>
 <% end %>
 

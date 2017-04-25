@@ -16,7 +16,7 @@ def show
   else
     @tags = Tag.search(params[:search_term], where: {type_key: params[:tag_type]}, fields: [{text: :word_start}])
   end
-  @tag_works = Work.joins(:tags).where('works.id in (?) or tags.id in (?)', @works.results, @tags.results).references(:tags)
+  @tag_works = Work.joins(:tags).where('works.id in (?) or tags.id in (?)', @works.results, @tags.results).references(:tags).distinct
 end
 
 private
