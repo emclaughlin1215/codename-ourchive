@@ -38,9 +38,10 @@ class WorksController < ApplicationController
   # POST /works
   # POST /works.json
   def create
-    work_id = params[:work_creation_form][:work_id].to_s
+    permitted_params = work_creation_form_params.to_h
+    work_id = permitted_params[:work_id].to_s
     if (work_id == "")
-      @work_creation_form = WorkCreationForm.new(params[:work_creation_form])
+      @work_creation_form = WorkCreationForm.new(permitted_params)
       @work_creation_form.set_user!(current_user)
       @work_creation_form.set_chapters(params[:chapters], params[:titles])
       respond_to do |format|
@@ -53,7 +54,7 @@ class WorksController < ApplicationController
         end
       end
     else
-      @work_creation_form = WorkCreationForm.new(params[:work_creation_form])
+      @work_creation_form = WorkCreationForm.new(permitted_params)
       @work_creation_form.update()
       redirect_to works_path, notice: 'Work was successfully updated.'
     end
@@ -105,6 +106,6 @@ class WorksController < ApplicationController
     end
 
     def work_creation_form_params
-      params.require(:work_creation_form).permit(:work_summary, :is_complete, :series_id, :collection_id, :word_count, :total_chapters, :is_series, :body_text, :character_tags, :theme_tags, :fandom_tags, :primary_pairing_tags, :secondary_pairing_tags)
+      params.require(:work_creation_form).permit(:work_summary, :work_title, :is_complete, :series_id, :collection_id, :word_count, :total_chapters, :is_series, :body_text, :character_tags, :theme_tags, :fandom_tags, :primary_pairing_tags, :secondary_pairing_tags)
     end
 end

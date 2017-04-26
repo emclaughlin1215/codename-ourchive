@@ -5,9 +5,7 @@ gem 'responders'
 gem 'devise'
 gem 'searchkick'
 gem 'will_paginate'
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.2'
-# Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -30,7 +28,7 @@ gem 'therubyracer'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
-gem 'autoprefixer-rails', '~> 6.3.5', '>= 6.3.3.1'
+gem 'autoprefixer-rails', '~> 6.7.7.2'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'redis', '~>3.2'
 
