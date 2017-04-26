@@ -29,7 +29,8 @@ function removetag(e)
     $('#tags_to_remove').val(id);
   }
 }
-function create_work_tag(val, item, hiddenItem, inputItem) {
+function create_work_tag(val, item, hiddenItem, inputItem, tag_type) {
+  alert(val);
   var tag = $('<li class="tag_li"><span>'+val+'</span></li>');
   var removeTag = $('<a class="close_icon_link"><span class="close_icon">\xd7</span></a>')
     .click(function(e) {
@@ -42,7 +43,7 @@ function create_work_tag(val, item, hiddenItem, inputItem) {
   inputItem.focus();
   var hiddenTag = $(hiddenItem).val();
   if (hiddenTag != '') {
-    $(hiddenItem).val(hiddenTag + "," + val);
+    $(hiddenItem).val(hiddenTag + "," + val+",," + tag_type);
   }
   else {
     $(hiddenItem).val(val);
@@ -117,14 +118,16 @@ $(document).ready(function() {
     }
   });
 
-  $( "#0_tags_filter" ).keypress(function( e ) {
-    var characterPressed = String.fromCharCode(e.which);
+  $( ".new_textBox" ).keypress(function( event ) {
+    var characterPressed = String.fromCharCode(event.which);
     if (characterPressed == ',') {
-      var tmpVal = $('#0_tags_filter').val();
-      if (tmpVal != '') {
-        $('#0_tags_filter').val('');
-        create_work_tag(tmpVal, "#0_tags_div ul", "#0_tags_hidden", $('#0_tags_filter'));
-        e.preventDefault();
+      var tmpVal = $(event.target);
+      if (tmpVal.val() != '') {
+        var oldVal = tmpVal.val();
+        tmpVal.val('');
+        var id = event.target.id.charAt(0);
+        create_work_tag(oldVal, "#"+id+"_tags_div ul", "#"+id+"_tags_hidden", $(event.target));
+        event.preventDefault();
       }
     }
   });
