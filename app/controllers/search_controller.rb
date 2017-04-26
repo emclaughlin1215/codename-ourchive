@@ -7,16 +7,16 @@ end
 
 def show
   if (params[:work_type] == 'All')
-    @works = Work.search(params[:search_term], fields: [{title: :word_start}, {work_summary: :word_start}])
+    @init_works = Work.search(params[:search_term], fields: [{title: :word_start}, {work_summary: :word_start}])
   else
-    @works = Work.search(params[:search_term], where: {work_type: params[:work_type]}, fields: [{title: :word_start}, {work_summary: :word_start}])
+    @init_works = Work.search(params[:search_term], where: {work_type: params[:work_type]}, fields: [{title: :word_start}, {work_summary: :word_start}])
   end
   if (params[:tag_type] == 'All')
     @tags = Tag.search(params[:search_term], fields: [{text: :word_start}])
   else
     @tags = Tag.search(params[:search_term], where: {type_key: params[:tag_type]}, fields: [{text: :word_start}])
   end
-  @tag_works = Work.joins(:tags).where('works.id in (?) or tags.id in (?)', @works.results, @tags.results).references(:tags).distinct
+  @results = Work.joins(:tags).where('works.id in (?) or tags.id in (?)', @init_works.results, @tags.results).references(:tags).distinct
 end
 
 private

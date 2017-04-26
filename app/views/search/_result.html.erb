@@ -1,13 +1,15 @@
-<dl class="dl-horizontal">
+<% cache result do %>
+  <dl class="dl-horizontal">
     <dt>Title</dt>
-    <dd><%= r.title %></dd>
+    <dd><%= result.title %></dd>
     <dt>Summary</dt>
-    <dd><%= r.work_summary %></dd>
+    <dd><%= result.work_summary %></dd>
     <dt>Tags</dt>
     <dd><ul class="list-inline">
-          <% r.tags.each do |t| %>
+          <% result.tags.each do |t| %>
             <li><%= t.text %></li>
           <% end %>
         </ul>
     </dd>
   </dl>
+<% end %>

@@ -1,4 +1,2 @@
-<% @tag_works.each do |r| %>
-  <%= render "result", r: r %>
-<% end %>
+<%= render partial: 'result', collection: @results, cached: true%>
 
