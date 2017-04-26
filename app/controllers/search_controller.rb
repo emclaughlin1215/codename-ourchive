@@ -16,7 +16,7 @@ def show
   else
     @tags = Tag.search(params[:search_term], where: {type_key: params[:tag_type]}, fields: [{text: :word_start}])
   end
-  @results = Work.joins(:tags).where('works.id in (?) or tags.id in (?)', @init_works.results, @tags.results).references(:tags).distinct
+  @results = Work.joins(:tags).where('works.id in (?) or tags.id in (?)', @init_works.results, @tags.results).references(:tags).distinct.paginate(:page => params[:page], :per_page => 25)
 end
 
 private
