@@ -29,7 +29,7 @@ class WorksController < ApplicationController
 
   # GET /works/1/edit
   def edit
-    @work = Work.joins(:tags).find(params[:id])
+    @work = Work.includes(:tags).find(params[:id])
     @chapters = @work.chapters
     @work_creation_form.set_user!(current_user)
     @is_edit = true
@@ -86,7 +86,7 @@ class WorksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_work
-      @work = Work.joins(:tags).find(params[:id])
+      @work = Work.includes(:tags).find(params[:id])
     end
     def set_work_form
       @work_creation_form = WorkCreationForm.new(work_summary: @work.work_summary, work_title: @work.title, is_series: @work.is_series, work_type: @work.work_type, is_complete: @work.is_complete,
@@ -106,6 +106,6 @@ class WorksController < ApplicationController
     end
 
     def work_creation_form_params
-      params.require(:work_creation_form).permit(:work_summary, :work_title, :is_complete, :series_id, :collection_id, :word_count, :total_chapters, :is_series, :body_text, :character_tags, :theme_tags, :fandom_tags, :primary_pairing_tags, :secondary_pairing_tags)
+      params.require(:work_creation_form).permit(:work_summary, :work_title, :is_complete, :series_id, :collection_id, :word_count, :total_chapters, :is_series, :body_text, :character_tags, :theme_tags, :fandom_tags, :primary_pairing_tags, :secondary_pairing_tags, :one_tags, :work_type)
     end
 end

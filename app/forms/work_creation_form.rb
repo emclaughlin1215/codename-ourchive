@@ -11,10 +11,6 @@ class WorkCreationForm
     attribute :is_series, Boolean
     attribute :body_text, String
     attribute :one_tags, String
-    attribute :four_tags, String
-    attribute :zero_tags, String
-    attribute :two_tags, String
-    attribute :three_tags, String
     attribute :work_title, String
     attribute :work_type, Integer    
     attribute :work_id, Integer
@@ -75,32 +71,9 @@ class WorkCreationForm
         end
         one_tags_split = one_tags.to_s.split(",")
         one_tags_split.each do |tag|
-            @tag = Tag.where(text: tag, type_key: 1).first_or_create
+	    split = tag.split("~")
+            @tag = Tag.where(text: split[0], type_key: split[1]).first_or_create
             WorkTag.where(tag_id: @tag.id, work_id: @work.id).first_or_create
-            TagSuggestion.add_tag(@tag)
-        end
-        four_tags_split = four_tags.to_s.split(",")
-        four_tags_split.each do |tag|
-            @tag = Tag.where(text: tag, type_key: 4).first_or_create
-            WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
-            TagSuggestion.add_tag(@tag)
-        end
-        two_tags_split = two_tags.to_s.split(",")
-        two_tags_split.each do |tag|
-            @tag = Tag.where(text: tag, type_key: 2).first_or_create
-            WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
-            TagSuggestion.add_tag(@tag)
-        end
-        three_tags_split = three_tags.to_s.split(",")
-        three_tags_split.each do |tag|
-            @tag = Tag.where(text: tag, type_key: 3).first_or_create
-            WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
-            TagSuggestion.add_tag(@tag)
-        end
-        zero_tags_split = zero_tags.to_s.split(",")
-        zero_tags_split.each do |tag|
-            @tag = Tag.where(text: tag, type_key: 0).first_or_create
-            WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
             TagSuggestion.add_tag(@tag)
         end
     end
