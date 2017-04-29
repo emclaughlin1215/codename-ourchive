@@ -53,28 +53,33 @@ class WorkCreationForm
     private
 
     def persist!
-        @work = Work.create!(work_summary: work_summary, is_complete: is_complete, series_id: series_id,
+        puts work_id
+        if (work_id)
+          update()
+        else
+          @work = Work.create!(work_summary: work_summary, is_complete: is_complete, series_id: series_id,
             word_count: body_text.split.size, total_chapters: total_chapters, is_series: is_series, user_id: user_id, title: work_title, work_type: work_type)
-        if (work_type == 1)
-          chapter = @work.chapters.create!(body_text: body_text, chapter_summary: work_summary, chapter_number: 1, title: work_title)
-        elsif (work_type == 2)
-          chapter = @work.chapters.create!(body_image: body_external, chapter_summary: work_summary, chapter_number: 1, title: work_title)
-        elsif(work_type == 0)
-          chapter = @work.chapters.create!(body_audio: body_external, chapter_summary: work_summary, chapter_number: 1, title: work_title)
-        end
-        counter = 1
-        if (@chapters)
-          @chapters.each do |chapter|
-            create_chapter(chapter, counter)
-            counter = counter + 1
+          if (work_type == 1)
+            chapter = @work.chapters.create!(body_text: body_text, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+          elsif (work_type == 2)
+            chapter = @work.chapters.create!(body_image: body_external, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+          elsif(work_type == 0)
+            chapter = @work.chapters.create!(body_audio: body_external, chapter_summary: work_summary, chapter_number: 1, title: work_title)
           end
-        end
-        one_tags_split = one_tags.to_s.split(",")
-        one_tags_split.each do |tag|
+          counter = 1
+          if (@chapters)
+            @chapters.each do |chapter|
+              create_chapter(chapter, counter)
+              counter = counter + 1
+            end
+          end
+          one_tags_split = one_tags.to_s.split(",")
+          one_tags_split.each do |tag|
 	    split = tag.split("~")
             @tag = Tag.where(text: split[0], type_key: split[1]).first_or_create
             WorkTag.where(tag_id: @tag.id, work_id: @work.id).first_or_create
             TagSuggestion.add_tag(@tag)
+          end
         end
     end
     def create_chapter(chapter, counter)
@@ -89,38 +94,17 @@ class WorkCreationForm
     def update_tags
       tags_to_remove_split = tags_to_remove.to_s.split(",")
       tags_to_remove_split.each do |tag|
+        puts 'TO REMOVE'
+        puts tag
         @work.tags.delete(tag)
       end
-      three_tags_split = three_tags.to_s.split(",")
-      three_tags_split.each do |tag|
-          @tag = Tag.where(text: tag, type_key: 3).first_or_create
-          WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
-          TagSuggestion.add_tag(@tag)
-      end
-      zero_tags_split = zero_tags.to_s.split(",")
-      zero_tags_split.each do |tag|
-          @tag = Tag.where(text: tag, type_key: 0).first_or_create
-          WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
-          TagSuggestion.add_tag(@tag)
-      end
       one_tags_split = one_tags.to_s.split(",")
-        one_tags_split.each do |tag|
-            @tag = Tag.where(text: tag, type_key: 1).first_or_create
-            WorkTag.where(tag_id: @tag.id, work_id: @work.id).first_or_create
-            TagSuggestion.add_tag(@tag)
-        end
-        four_tags_split = four_tags.to_s.split(",")
-        four_tags_split.each do |tag|
-            @tag = Tag.where(text: tag, type_key: 4).first_or_create
-            WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
-            TagSuggestion.add_tag(@tag)
-        end
-        two_tags_split = two_tags.to_s.split(",")
-        two_tags_split.each do |tag|
-            @tag = Tag.where(text: tag, type_key: 2).first_or_create
-            WorkTag.create!(tag_id: @tag.id, work_id: @work.id)
-            TagSuggestion.add_tag(@tag)
-        end
+      one_tags_split.each do |tag|
+        split = tag.split("~")
+        @tag = Tag.where(text: split[0], type_key: split[1]).first_or_create
+        WorkTag.where(tag_id: @tag.id, work_id: @work.id).first_or_create
+        TagSuggestion.add_tag(@tag)
+      end
     end
     def update_work
       puts current_work

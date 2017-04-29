@@ -18,7 +18,7 @@ function add_chapter_first_click() {
 }
 function removetag(e)
 {
-  var target = $(event.target).parent().parent();
+  var target = $(e.target).parent().parent();
   remove_work_tag(target);
   var id = $(target).attr('id');
   var hiddenTag = $('#tags_to_remove').val();
