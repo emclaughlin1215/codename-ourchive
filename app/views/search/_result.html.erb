@@ -4,9 +4,37 @@
     <dd><%= result.title %></dd>
     <dt>Summary</dt>
     <dd><%= result.work_summary %></dd>
-    <dt>Tags</dt>
+    <dt><%= TagConfig.config["0"]["friendly"] %></dt>
     <dd><ul class="list-inline">
-          <% result.tags.each do |t| %>
+          <% result.tags.select{|tag| tag.type_key == 0}.each do |t| %>
+            <li><%= t.text %></li>
+          <% end %>
+        </ul>
+    </dd>
+    <dt><%= TagConfig.config["1"]["friendly"] %></dt>
+    <dd> <ul class="list-inline">
+          <% result.tags.select{|tag| tag.type_key == 1}.each do |t| %>
+            <li><%= t.text %></li>
+          <% end %>
+        </ul>
+    </dd>
+    <dt><%= TagConfig.config["2"]["friendly"] %></dt>
+    <dd> <ul class="list-inline">
+          <% result.tags.select{|tag| tag.type_key == 2}.each do |t| %>
+            <li><%= t.text %></li>
+          <% end %>
+        </ul>
+    </dd>
+    <dt><%= TagConfig.config["3"]["friendly"] %></dt>
+    <dd> <ul class="list-inline">
+          <% result.tags.select{|tag| tag.type_key == 3}.each do |t| %>
+            <li><%= t.text %></li>
+          <% end %>
+        </ul>
+    </dd>
+    <dt><%= TagConfig.config["4"]["friendly"] %></dt>
+    <dd> <ul class="list-inline">
+          <% result.tags.select{|tag| tag.type_key == 4}.each do |t| %>
             <li><%= t.text %></li>
           <% end %>
         </ul>
