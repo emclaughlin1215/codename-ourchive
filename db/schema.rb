@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170401142714) do
+ActiveRecord::Schema.define(version: 20170514171419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,12 +52,18 @@ ActiveRecord::Schema.define(version: 20170401142714) do
     t.text     "chapter_summary"
     t.integer  "chapter_number"
     t.text     "body_text"
-    t.string   "body_audio"
-    t.string   "body_image"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "work_id"
     t.string   "title"
+    t.string   "body_image_file_name"
+    t.string   "body_image_content_type"
+    t.integer  "body_image_file_size"
+    t.datetime "body_image_updated_at"
+    t.string   "body_audio_file_name"
+    t.string   "body_audio_content_type"
+    t.integer  "body_audio_file_size"
+    t.datetime "body_audio_updated_at"
     t.index ["work_id"], name: "index_chapters_on_work_id", using: :btree
   end
 
