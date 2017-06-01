@@ -94,8 +94,8 @@ $(document).ready(function() {
       $('#work_text_label').hide();
       $('#chapter_text_label').hide();
       $('#body_text_field').hide();
-      $('#work_external_label').show();
-      $('#body_external_field').show();
+      $('#work_image_label').show();
+      $('#body_image_field').show();
     }    
   });
   $('#in_collection').change(function(){

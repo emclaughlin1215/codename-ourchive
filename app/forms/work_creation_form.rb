@@ -15,8 +15,9 @@ class WorkCreationForm
     attribute :work_type, Integer    
     attribute :work_id, Integer
     attribute :tags_to_remove, String
-    attribute :body_external, String
- 
+    #attribute :body_external, String
+    #attribute :body_audio, File
+    #attribute :body_image, File 
     validates :work_summary, presence: true
     validates :work_title, presence: true
     attr_reader :work
@@ -62,9 +63,9 @@ class WorkCreationForm
           if (work_type == 1)
             chapter = @work.chapters.create!(body_text: body_text, chapter_summary: work_summary, chapter_number: 1, title: work_title)
           elsif (work_type == 2)
-            chapter = @work.chapters.create!(body_image: body_external, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+            chapter = @work.chapters.create!(body_image: body_image, chapter_summary: work_summary, chapter_number: 1, title: work_title)
           elsif(work_type == 0)
-            chapter = @work.chapters.create!(body_audio: body_external, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+            chapter = @work.chapters.create!(body_audio: body_audio, chapter_summary: work_summary, chapter_number: 1, title: work_title)
           end
           counter = 1
           if (@chapters)

@@ -55,11 +55,11 @@
         <div style="display:none;" id="chapter_external_label">
           <%= f.label "Chapter URL"%><br>
         </div>
-        <div id="work_external_label">
-          <%= f.label "Work URL"%><br>
+        <div id="work_image_label">
+          <%= f.label "Upload Image"%><br>
         </div>
         <%= f.text_area :body_text, :class=>"form-control", :rows=>"20", :id=>"body_text_field" %>
-        <%= f.text_field :body_external, :class=>"form-control", :id=>"body_external_field", :style=>"display:none;" %>
+        <%= f.file_field :body_image, :class=>"form-control", :id=>"body_image_field", :style=>"display:none;" %>
       </div>
       <div class="field">
         <ul id="new_chapters" class="chapters_ul">
