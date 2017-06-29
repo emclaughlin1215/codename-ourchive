@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  <% if !f.object.work_id %>
+  <% if !@is_edit %>
   <div class="field">
     Please choose a type of work to post:
     <%= f.select(:work_type, WorkType.all.collect {|t| [ t.type_name, t.type_key ] }, :selected => f.object.work_type) %>
@@ -54,14 +54,11 @@
         <div id="work_text_label">
           <%= f.label :body_text, "Work text"%><br>
         </div>
-        <div style="display:none;" id="chapter_external_label">
-          <%= f.label "Chapter URL"%><br>
-        </div>
-        <div id="work_image_label">
-          <%= f.label "Upload Image"%><br>
+        <div id="work_image_label" style="display:none;">
+          <%= f.label "Upload File"%><br>
         </div>
         <%= f.text_area :body_text, :class=>"form-control", :rows=>"20", :id=>"body_text_field" %>
-        <%= f.file_field :body_image, :class=>"form-control", :id=>"body_image_field", :style=>"display:none;" %>
+        <%= f.file_field :body_image, :class=>"form-control", :id=>"body_image_field", :style=>"display:none;height:auto;" %>
       </div>
       <div class="field">
         <ul id="new_chapters" class="chapters_ul">

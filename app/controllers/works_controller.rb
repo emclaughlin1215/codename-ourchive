@@ -30,7 +30,7 @@ class WorksController < ApplicationController
   # GET /works/1/edit
   def edit
     @work = Work.includes(:tags).find(params[:id])
-    @chapters = @work.chapters
+    @chapters = @work.chapters.order('id ASC')
     @work_creation_form.set_user!(current_user)
     @is_edit = true
   end

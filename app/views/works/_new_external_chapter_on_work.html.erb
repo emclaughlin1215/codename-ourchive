@@ -3,6 +3,6 @@
   <%= text_field_tag 'titles[]', nil, class: 'form-control' %>
 </div>
 <div class="form-group">
-    <%= label_tag 'texts', "Chapter URL" %>
-    <%= text_field_tag 'chapters[]', nil, class: 'form-control' %>
+    <%= label_tag 'texts', "Chapter File" %>
+    <%= file_field_tag 'chapters[]', class: 'form-control', style: 'height:auto;' %>
 </div>

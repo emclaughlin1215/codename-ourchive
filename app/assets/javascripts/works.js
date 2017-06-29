@@ -85,9 +85,8 @@ $(document).ready(function() {
     if (work_type == '1'){
       $('#work_text_label').show();
       $('#body_text_field').show();
-      $('#work_external_label').hide();
-      $('#body_external_field').hide();
-      $('#chapter_external_label').hide();
+      $('#work_image_label').hide();
+      $('#body_image_field').hide();
     }
 
     else{
