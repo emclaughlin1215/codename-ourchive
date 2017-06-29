@@ -10,11 +10,13 @@
       </ul>
     </div>
   <% end %>
+  <% if !f.object.work_id %>
   <div class="field">
     Please choose a type of work to post:
     <%= f.select(:work_type, WorkType.all.collect {|t| [ t.type_name, t.type_key ] }, :selected => f.object.work_type) %>
     <%= f.hidden_field :work_id %>
   </div>
+  <% end %>
   <div id="1_form">
     <div class="form-group">
       <%= f.label :work_title %><br>
