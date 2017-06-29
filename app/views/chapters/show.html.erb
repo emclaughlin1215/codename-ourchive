@@ -22,12 +22,13 @@
 
 <p>
   <strong>Body audio:</strong>
-  <%= @chapter.body_audio %>
+  <%= link_to 'Download Audio', @chapter.body_audio.url, :class => "play" %>
 </p>
 
 <p>
   <strong>Body image:</strong>
-  <%= @chapter.body_image %>
+  <%= image_tag @chapter.body_image %>
+
 </p>
 
 <%= link_to 'Edit', edit_chapter_path(@chapter) %> |

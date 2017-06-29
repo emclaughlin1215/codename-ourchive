@@ -1,6 +1,7 @@
 class WorkCreationForm
     include ActiveModel::Model
     include Virtus.model
+    include ActionDispatch::Http
     attribute :user_id, Integer
     attribute :work_summary, String
     attribute :is_complete, Boolean
@@ -17,7 +18,7 @@ class WorkCreationForm
     attribute :tags_to_remove, String
     #attribute :body_external, String
     #attribute :body_audio, File
-    #attribute :body_image, File 
+    attribute :body_image, UploadedFile
     validates :work_summary, presence: true
     validates :work_title, presence: true
     attr_reader :work
@@ -54,8 +55,7 @@ class WorkCreationForm
     private
 
     def persist!
-        puts work_id
-        if (work_id)
+        if (work_id && work_id != "")
           update()
         else
           @work = Work.create!(work_summary: work_summary, is_complete: is_complete, series_id: series_id,
@@ -65,7 +65,7 @@ class WorkCreationForm
           elsif (work_type == 2)
             chapter = @work.chapters.create!(body_image: body_image, chapter_summary: work_summary, chapter_number: 1, title: work_title)
           elsif(work_type == 0)
-            chapter = @work.chapters.create!(body_audio: body_audio, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+            chapter = @work.chapters.create!(body_audio: body_image, chapter_summary: work_summary, chapter_number: 1, title: work_title)
           end
           counter = 1
           if (@chapters)
