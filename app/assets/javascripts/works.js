@@ -55,13 +55,16 @@ $(document).ready(function() {
     if (work_type == '1'){
       $('#work_text_label').show();
       $('#body_text_field').show();
+      $('#work_image_label').hide();
+      $('#body_image_field').hide();
     }
 
     else{
       $('#work_text_label').hide();
+      $('#chapter_text_label').hide();
       $('#body_text_field').hide();
-      $('#work_external_label').show();
-      $('#body_external_field').show();
+      $('#work_image_label').show();
+      $('#body_image_field').show();
     }
   $('#add_chapter_link').one('click', function() {
     add_chapter_first_click();
@@ -168,5 +171,9 @@ $(document).ready(function() {
       create_work_tag(ui.item.label, "#4_tags_div ul", "#tags_to_add", $('#4_tags_filter'), 4);
       return false;
     }
+  });
+
+  $(".btn").mouseup(function(){
+    $(this).blur();
   });
 });

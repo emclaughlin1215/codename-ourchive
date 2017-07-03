@@ -25,8 +25,8 @@ class WorkCreationForm
 
     def save
         if valid?
-            persist!
-            true
+            return_val = persist!
+            return_val
         else
             false
         end
@@ -61,11 +61,29 @@ class WorkCreationForm
           @work = Work.create!(work_summary: work_summary, is_complete: is_complete, series_id: series_id,
             word_count: body_text.split.size, total_chapters: total_chapters, is_series: is_series, user_id: user_id, title: work_title, work_type: work_type)
           if (work_type == 1)
-            chapter = @work.chapters.create!(body_text: body_text, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+            begin
+              chapter = @work.chapters.create!(body_text: body_text, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+            rescue 
+              add_type_error
+              @work.destroy
+              return false
+            end
           elsif (work_type == 2)
-            chapter = @work.chapters.create!(body_image: body_image, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+            begin
+              chapter = @work.chapters.create!(body_image: body_image, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+            rescue 
+              add_type_error
+              @work.destroy
+              return false
+            end
           elsif(work_type == 0)
-            chapter = @work.chapters.create!(body_audio: body_image, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+            begin
+              chapter = @work.chapters.create!(body_audio: body_image, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+            rescue 
+              add_type_error
+              @work.destroy
+              return false
+            end
           end
           counter = 1
           if (@chapters)
@@ -109,5 +127,8 @@ class WorkCreationForm
     end
     def update_work
       puts current_work
+    end
+    def add_type_error
+      self.errors[:base] << "Type invalid. Please choose a different file."
     end
 end

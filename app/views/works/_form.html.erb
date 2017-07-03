@@ -64,11 +64,17 @@
         <ul id="new_chapters" class="chapters_ul">
         </ul>
       </div>
-      <%= link_to 'Add Chapter', new_chapter_on_work_work_url(:work_id), remote: true, :id => 'add_chapter_link' %>
+      <div class="field">
+        <%= link_to 'Add Chapter', new_chapter_on_work_work_url(:work_id), remote: true, :id => 'add_chapter_link', :class=>"btn btn-default"%>
+      </div>
     <%else%>
       <%= render :partial => "works/show_chapter", :collection => @chapters %>
     <%end%>
     <%= f.hidden_field :tags_to_remove, :id => 'tags_to_remove' %>
+    <br/>
+    <br/>
+    <h3>Tags</h3>
+    <br/>
     <div class="field" id="1_tags_div">
       <%= f.label TagConfig.config["1"]["friendly"] %><br>
       <ul id="1_tags_list" class="tag_ul">
