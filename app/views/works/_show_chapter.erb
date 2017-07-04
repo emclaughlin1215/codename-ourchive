@@ -1,3 +1,7 @@
 <div class="field">
-  <%= show_chapter.title %> - <%= link_to 'Edit', edit_chapter_path(show_chapter.id) %>
+  <%= show_chapter.title %> - <%= link_to 'Edit', "#", :class => 'edit_chapter_link', :id => 'edit_chapter_'+show_chapter.id.to_s %>
+
+  <div style="display:none;" id=<%='edit_partial_'+ show_chapter.id.to_s%>>
+  	<%= render :partial => "works/edit_chapter_on_work", locals: { edit_chapter: show_chapter } %>
+  </div>
 </div>
