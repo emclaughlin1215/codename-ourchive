@@ -35,6 +35,13 @@ class WorkCreationForm
       @chapters = chapters_param
       @chapter_titles = titles_param
     end
+    def set_edit_chapters(summaries_param, body_numbers_param, body_texts_param, body_audios_param, body_images_param )
+      @summaries = summaries_param
+      @body_texts = body_texts_param
+      @body_images = body_images_param
+      @body_audios = body_audios_param
+      @body_numbers = body_numbers_param
+    end
     def create_for_edit!(work)
       work_id = work.id
       work_summary = work.work_summary
@@ -51,6 +58,7 @@ class WorkCreationForm
         :word_count => word_count, :total_chapters => total_chapters)
       @work = Work.find(work_id)
       update_tags()
+      update_chapters()
     end
     private
 
@@ -113,8 +121,6 @@ class WorkCreationForm
     def update_tags
       tags_to_remove_split = tags_to_remove.to_s.split(",")
       tags_to_remove_split.each do |tag|
-        puts 'TO REMOVE'
-        puts tag
         @work.tags.delete(tag)
       end
       one_tags_split = one_tags.to_s.split(",")
@@ -123,6 +129,13 @@ class WorkCreationForm
         @tag = Tag.where(text: split[0], type_key: split[1]).first_or_create
         WorkTag.where(tag_id: @tag.id, work_id: @work.id).first_or_create
         TagSuggestion.add_tag(@tag)
+      end
+    end
+    def update_chapters
+      counter = 0
+      @work.chapters.order('id ASC').each do |chapter|
+        chapter.update(chapter_summary: @summaries[counter], chapter_number: @body_numbers[counter], body_text: @body_texts[counter])
+        counter = counter + 1
       end
     end
     def update_work

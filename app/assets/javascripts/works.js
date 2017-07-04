@@ -179,7 +179,6 @@ $(document).ready(function() {
 
   $('.edit_chapter_link').click(function (event){
     var id = event.target.id.split("_").pop();
-    alert(id);
     $('#edit_partial_'+id).toggle();
   });
 });

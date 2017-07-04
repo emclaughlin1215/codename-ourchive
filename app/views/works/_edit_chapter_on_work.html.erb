@@ -1,43 +1,26 @@
-<%= form_for edit_chapter, url: chapter_path do |f| %>
-  <% if edit_chapter.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(edit_chapter.errors.count, "error") %> prohibited this work from being saved:</h2>
-
-      <ul>
-      <% edit_chapter.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
   <div class="field">
-    <%= f.label :chapter_summary %><br>
-    <%= f.text_area :chapter_summary, :class=>"form-control", :rows=>"4" %>
+    <%= label_tag :chapter_summary %><br>
+    <%= text_area_tag 'summaries[]', edit_chapter.chapter_summary, class: "form-control", rows: "4" %>
   </div>
   <div class="field">
-    <%= f.label :chapter_number %><br>
-    <%= f.number_field :chapter_number %>
+    <%= label_tag :chapter_number %><br>
+    <%= number_field_tag 'numbers[]', edit_chapter.chapter_number %>
   </div>
   <div class="field">
-    <%= f.label :body_text, "Chapter text" %><br>
-    <%= f.text_area :body_text, :class=>"form-control" %>
+    <%= label_tag :body_text, "Chapter text" %><br>
+    <%= text_area_tag 'body_texts[]', edit_chapter.body_text, class: "form-control" %>
   </div>
   <div class="field">
-    <%= f.label :body_audio, "Chapter audio" %><br>
+    <%= label_tag :body_audio, "Chapter audio" %><br>
     <% if edit_chapter.body_audio? %>
       <%= link_to 'Download Audio', edit_chapter.body_audio.url, :class => "play" %><br>
     <% end %>
-    <%= f.file_field :body_audio %>
+    <%= file_field_tag 'body_audios[]' %>
   </div>
   <div class="field">
-    <%= f.label :body_image, "Chapter image" %><br>
+    <%= label_tag :body_image, "Chapter image" %><br>
     <% if edit_chapter.body_image? %>
-      <%= image_tag edit_chapter.body_image %>
+      <%= image_tag nil, edit_chapter.body_image %>
     <% end %>
-    <%= f.file_field :body_image %>
+    <%= file_field_tag 'body_images[]'%>
   </div>
-  <div class="actions">
-    <%= f.submit "Submit", :class=>"btn btn-primary" %>
-  </div>
-  
-<% end %>
