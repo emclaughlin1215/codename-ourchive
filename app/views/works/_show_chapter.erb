@@ -1,7 +1,20 @@
-<div class="field">
-  <%= show_chapter.title %> - <%= link_to 'Edit', "#", :class => 'edit_chapter_link', :id => 'edit_chapter_'+show_chapter.id.to_s %>
-
-  <div style="display:none;" id=<%='edit_partial_'+ show_chapter.id.to_s%>>
+<div class="row">
+  <div class="col-md-6"><%= label_tag 'Chapter title' %></div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <%= show_chapter.title %>
+  </div>
+  <div class="col-md-2">
+    <%= link_to 'Edit', "#", :class => 'edit_chapter_link', :id => 'edit_chapter_'+show_chapter.id.to_s %>
+  </div>  
+</div>
+<br/>
+<div class="row">
+  <div class="col-md-12" style="display:none;" id=<%='edit_partial_'+ show_chapter.id.to_s%>>
   	<%= render :partial => "works/edit_chapter_on_work", locals: { edit_chapter: show_chapter } %>
+  	<br/>
+	<br/>
   </div>
 </div>
+
