@@ -61,6 +61,7 @@ class WorksController < ApplicationController
       end
     else
       @work_creation_form = WorkCreationForm.new(permitted_params)
+      @work_creation_form.set_chapters(params[:chapters], params[:titles])
       @work_creation_form.set_edit_chapters(params[:summaries], params[:body_numbers], params[:body_texts],
         params[:body_audios], params[:body_images])
       @work_creation_form.update()

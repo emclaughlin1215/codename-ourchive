@@ -96,7 +96,7 @@ class WorkCreationForm
           counter = 1
           if (@chapters)
             @chapters.each do |chapter|
-              create_chapter(chapter, counter)
+              create_chapter(chapter, counter, counter)
               counter = counter + 1
             end
           end
@@ -109,13 +109,13 @@ class WorkCreationForm
           end
         end
     end
-    def create_chapter(chapter, counter)
+    def create_chapter(chapter, counter, counter_title)
       if (work_type == 1)
-          @work.chapters.create!(body_text: chapter, chapter_summary: work_summary, chapter_number: counter+1, title: @chapter_titles[counter - 1])
+          @work.chapters.create!(body_text: chapter, chapter_summary: work_summary, chapter_number: counter+1, title: @chapter_titles[counter_title - 1])
         elsif (work_type == 2)
-          @work.chapters.create!(body_image: chapter, chapter_summary: work_summary, chapter_number: counter+1, title: @chapter_titles[counter - 1])
+          @work.chapters.create!(body_image: chapter, chapter_summary: work_summary, chapter_number: counter+1, title: @chapter_titles[counter_title - 1])
         elsif(work_type == 0)
-          @work.chapters.create!(body_audio: chapter, chapter_summary: work_summary, chapter_number: counter+1, title: @chapter_titles[counter - 1])
+          @work.chapters.create!(body_audio: chapter, chapter_summary: work_summary, chapter_number: counter+1, title: @chapter_titles[counter_title - 1])
         end
     end
     def update_tags
@@ -139,6 +139,14 @@ class WorkCreationForm
           counter = counter + 1
         else
           chapter.update(chapter_summary: @summaries[counter], body_text: @body_texts[counter])
+          counter = counter + 1
+        end
+      end
+      if (@chapters)
+        counter_title = 1
+        @chapters.each do |chapter|
+          create_chapter(chapter, counter, counter_title)
+          counter_title = counter_title + 1
           counter = counter + 1
         end
       end

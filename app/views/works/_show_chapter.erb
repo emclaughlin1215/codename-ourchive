@@ -10,11 +10,9 @@
   </div>  
 </div>
 <br/>
-<div class="row">
-  <div class="col-md-12" style="display:none;" id=<%='edit_partial_'+ show_chapter.id.to_s%>>
-  	<%= render :partial => "works/edit_chapter_on_work", locals: { edit_chapter: show_chapter } %>
-  	<br/>
+<div style="display:none;" id=<%='edit_partial_'+ show_chapter.id.to_s%>>
+	<%= render :partial => "works/edit_chapter_on_work", locals: { edit_chapter: show_chapter } %>
 	<br/>
-  </div>
+    <br/>
 </div>
 
