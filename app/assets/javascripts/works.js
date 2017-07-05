@@ -181,4 +181,14 @@ $(document).ready(function() {
     var id = event.target.id.split("_").pop();
     $('#edit_partial_'+id).toggle();
   });
+
+  $('#save-chapter-nums').click(function(event) {
+    var numbers = document.querySelectorAll('.chapter-number');
+    var updatedNumbers = document.querySelectorAll('.body-numbers');
+    var index;
+    for(index = 0; index < numbers.length; ++index)
+    {
+      numbers[index].innerHTML = updatedNumbers[index].value;
+    }
+  });
 });

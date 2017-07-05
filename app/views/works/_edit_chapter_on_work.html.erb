@@ -3,8 +3,8 @@
     <%= text_area_tag 'summaries[]', edit_chapter.chapter_summary, class: "form-control", rows: "4" %>
   </div>
   <div class="field">
-    <%= label_tag :chapter_number %><br>
-    <%= label_tag edit_chapter.chapter_number %> - <%= link_to 'Reorder', reorder_work_chapters_work_url, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}%>
+    <%= label_tag 'Chapter Number' %><br>
+    <%= label_tag edit_chapter.chapter_number, edit_chapter.chapter_number, class: 'chapter-number' %> - <%= link_to 'Reorder', reorder_work_chapters_work_url, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}%>
   </div>
   <div class="field">
     <%= label_tag :body_text, "Chapter text" %><br>
@@ -17,6 +17,7 @@
     <% end %>
     <%= file_field_tag 'body_audios[]' %>
   </div>
+  <%= hidden_field_tag 'body_numbers[]'%>
   <div class="field">
     <%= label_tag :body_image, "Chapter image" %><br>
     <% if edit_chapter.body_image? %>

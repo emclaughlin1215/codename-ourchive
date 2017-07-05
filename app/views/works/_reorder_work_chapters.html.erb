@@ -17,12 +17,12 @@
      <%= chapter.chapter_summary %>
    </div>
    <div class="col-md-4">
-     <%= number_field_tag chapter.chapter_number %>
+     <%= number_field_tag 'body_numbers[]', chapter.chapter_number, class: 'body-numbers'  %>
    </div>
  </div>
 <% end %>
 </div>
 <div class="modal-footer" style="background-color: white;">
-	<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-	<button class="btn btn-primary">Save changes</button>
+	<button class="btn" data-dismiss="modal" aria-hidden="true" id="save-chapter-nums">Done</button>
+	<!--<button class="btn btn-primary" id="save-chapter-nums">Save changes</button>-->
 </div>

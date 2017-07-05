@@ -134,8 +134,13 @@ class WorkCreationForm
     def update_chapters
       counter = 0
       @work.chapters.order('id ASC').each do |chapter|
-        chapter.update(chapter_summary: @summaries[counter], chapter_number: @body_numbers[counter], body_text: @body_texts[counter])
-        counter = counter + 1
+        if (@body_numbers.count > 1 && @body_numbers[1] != "")
+          chapter.update(chapter_summary: @summaries[counter], chapter_number: @body_numbers[counter + 1], body_text: @body_texts[counter])
+          counter = counter + 1
+        else
+          chapter.update(chapter_summary: @summaries[counter], body_text: @body_texts[counter])
+          counter = counter + 1
+        end
       end
     end
     def update_work
