@@ -8,6 +8,7 @@
     background: inherit;
     padding: 5px 5px;
     overflow: auto;
+    //height: 47px;
 }
 
 
@@ -44,15 +45,17 @@
 }
 
 .new_li {
+
+    font-weight: normal;
+    padding: 0 0 0 0; 
     display: block;
     float: left;
-    margin: 2px 5px 2px 0;
-    padding: .25em 4px .25em 0;
+    margin: 0px 0px 0px 0;
 }
 
 .new_textBox {
     box-shadow: none;
-    border: none;
+    border: 1px solid #ffffff;
     padding: .2em .5em .2em .5em;
     display: block;
     float: left;
