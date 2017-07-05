@@ -5,7 +5,11 @@ class WorksController < ApplicationController
   # GET /works
   # GET /works.json
   def index
-    @works = Work.where(user_id: current_user.id)
+    if current_user
+      @works = Work.where(user_id: current_user.id)
+    else
+      redirect_to new_user_session_path, notice: 'You are not currently logged in.'
+    end
   end
   def new_chapter_on_work
     respond_to do |format|
@@ -36,7 +40,7 @@ class WorksController < ApplicationController
   # GET /works/1/edit
   def edit
     @work = Work.includes(:tags).find(params[:id])
-    @chapters = @work.chapters.order('id ASC')
+    @chapters = @work.chapters.order('chapter_number ASC')
     @work_creation_form.set_user!(current_user)
     @is_edit = true
   end
