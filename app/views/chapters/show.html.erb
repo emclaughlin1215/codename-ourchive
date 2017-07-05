@@ -23,6 +23,7 @@
 <p>
   <strong>Body audio:</strong>
   <%= link_to 'Download Audio', @chapter.body_audio.url, :class => "play" %>
+  <%= audio_tag @chapter.body_audio, :id=>'chapter_audio' %> <a href="#" id="audio_link">Play</a>
 </p>
 
 <p>

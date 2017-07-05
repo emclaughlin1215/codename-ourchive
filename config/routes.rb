@@ -24,6 +24,9 @@ Rails.application.routes.draw do
     member do
       get 'new_chapter_on_work'
     end
+    member do
+      get 'reorder_work_chapters'
+    end
   end
   resources :tests
   resources :search

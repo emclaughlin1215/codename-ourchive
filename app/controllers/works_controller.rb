@@ -12,6 +12,12 @@ class WorksController < ApplicationController
       format.js {render layout: false} # Add this line to you respond_to block
     end
   end
+  def reorder_work_chapters
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
   # GET /works/1
   # GET /works/1.json
   def show

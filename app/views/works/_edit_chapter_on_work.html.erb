@@ -4,7 +4,7 @@
   </div>
   <div class="field">
     <%= label_tag :chapter_number %><br>
-    <%= number_field_tag 'numbers[]', edit_chapter.chapter_number %>
+    <%= label_tag edit_chapter.chapter_number %> - <%= link_to 'Reorder', reorder_work_chapters_work_url, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'}%>
   </div>
   <div class="field">
     <%= label_tag :body_text, "Chapter text" %><br>
@@ -24,3 +24,7 @@
     <% end %>
     <%= file_field_tag 'body_images[]'%>
   </div>
+
+<div class="modal fade" id="modal-window" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+ <%= render :partial => "works/reorder_work_chapters" %>
+ </div>

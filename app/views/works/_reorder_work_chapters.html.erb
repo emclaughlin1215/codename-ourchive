@@ -1,0 +1,13 @@
+<div class="modal-header" style="background-color: white;">
+   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+   <h3 id="myModalLabel">Chapters</h3>
+ </div>
+ <div class="modal-body" style="background-color: white;">
+   <% @chapters.each do |chapter| %>
+     <%= chapter.chapter_summary %>
+   <% end %>
+ </div>
+ <div class="modal-footer" style="background-color: white;">
+   <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+   <button class="btn btn-primary">Save changes</button>
+ </div>
