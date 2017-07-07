@@ -191,4 +191,14 @@ $(document).ready(function() {
       numbers[index].innerHTML = updatedNumbers[index].value;
     }
   });
+
+  $('.body-images').change(function (event){
+    var id = event.target.id.split("_").pop();
+    $('#stub_image_'+id).val("changed");
+  });
+
+  $('.body-audios').change(function (event){
+    var id = event.target.id.split("_").pop();
+    $('#stub_audio_'+id).val("changed");
+  });
 });

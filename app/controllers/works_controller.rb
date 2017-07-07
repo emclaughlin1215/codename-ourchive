@@ -67,7 +67,7 @@ class WorksController < ApplicationController
       @work_creation_form = WorkCreationForm.new(permitted_params)
       @work_creation_form.set_chapters(params[:chapters], params[:titles])
       @work_creation_form.set_edit_chapters(params[:summaries], params[:body_numbers], params[:body_texts],
-        params[:body_audios], params[:body_images])
+        params[:body_audios], params[:body_images], params[:body_images_stub], params[:body_audios_stub])
       @work_creation_form.update()
       redirect_to works_path, notice: 'Work was successfully updated.'
     end

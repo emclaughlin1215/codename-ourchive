@@ -35,12 +35,15 @@ class WorkCreationForm
       @chapters = chapters_param
       @chapter_titles = titles_param
     end
-    def set_edit_chapters(summaries_param, body_numbers_param, body_texts_param, body_audios_param, body_images_param )
+    def set_edit_chapters(summaries_param, body_numbers_param, body_texts_param, body_audios_param, body_images_param,
+    body_images_stub_param, body_audios_stub_param )
       @summaries = summaries_param
       @body_texts = body_texts_param
-      @body_images = body_images_param
-      @body_audios = body_audios_param
-      @body_numbers = body_numbers_param
+      @body_images = body_images_param ? body_images_param : []
+      @body_audios = body_audios_param ? body_audios_param : []
+      @body_numbers = body_numbers_param ? body_numbers_param : []
+      @images_stub = body_images_stub_param
+      @audios_stub = body_audios_stub_param
     end
     def create_for_edit!(work)
       work_id = work.id
@@ -133,14 +136,24 @@ class WorkCreationForm
     end
     def update_chapters
       counter = 0
+      audio_counter = 0
+      image_counter = 0
       @work.chapters.order('chapter_number ASC').each do |chapter|
-        if (@body_numbers.count > 1 && @body_numbers[1] != "")
-          chapter.update(chapter_summary: @summaries[counter], chapter_number: @body_numbers[counter + 1], body_text: @body_texts[counter])
-          counter = counter + 1
-        else
-          chapter.update(chapter_summary: @summaries[counter], body_text: @body_texts[counter])
-          counter = counter + 1
+        chapter.body_text = @body_texts[counter] && @body_texts[counter] != "" ? @body_texts[counter] : chapter.body_text
+        if (@images_stub[counter] != "")
+          chapter.body_image = @body_images[image_counter]
+          image_counter = image_counter + 1
         end
+        if (@audios_stub[counter] != "")
+          chapter.body_audio = @body_audios[audio_counter]
+          audio_counter = audio_counter + 1
+        end
+        chapter.chapter_summary = @summaries[counter]
+        chapter.chapter_number = @body_numbers[counter]
+        chapter.save
+        #chapter.update(chapter_summary: @summaries[counter], chapter_number: @body_numbers[counter], body_text: @body_texts[counter],
+        #  body_audio: @body_audios[counter], body_image: @body_images[counter])
+        counter = counter + 1
       end
       if (@chapters)
         counter_title = 1
