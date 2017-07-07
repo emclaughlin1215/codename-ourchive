@@ -22,6 +22,11 @@ class WorksController < ApplicationController
       format.js
     end
   end
+  def delete_chapter_image
+    chapter = Chapter.find(params[:chapter_id])
+    chapter.body_image.destroy
+    redirect_to edit_work_path
+  end
   # GET /works/1
   # GET /works/1.json
   def show

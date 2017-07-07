@@ -27,6 +27,9 @@ Rails.application.routes.draw do
     member do
       get 'reorder_work_chapters'
     end
+    member do
+      get 'delete_chapter_image'
+    end
   end
   resources :tests
   resources :search

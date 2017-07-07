@@ -36,7 +36,8 @@
     <% if show_chapter.body_image? %>
       <%= image_tag(show_chapter.body_image) %>
     <% end %>
-    <%= file_field_tag 'body_images[]', :id => 'body_image_'+show_chapter.id.to_s, class: 'body-images' %>
+    <%= file_field_tag 'body_images[]', :id => 'body_image_'+show_chapter.id.to_s, class: 'body-images' %><br>
+    <%= link_to 'Delete image', delete_chapter_image_work_url(:chapter_id => show_chapter.id) %>
     <%= hidden_field_tag 'body_images_stub[]', '', :id => 'stub_image_'+show_chapter.id.to_s, class: 'body-images-stub'  %>
   </div>
 
