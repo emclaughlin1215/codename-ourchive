@@ -28,9 +28,12 @@
     <% if show_chapter.body_audio? %>
       <%= link_to 'Download Audio', show_chapter.body_audio.url, :class => "play" %><br><br>
     <% end %>
-    <%= file_field_tag 'body_audios[]', :id => 'body_audio_'+show_chapter.id.to_s, class: 'body-audios' %>
+    <%= file_field_tag 'body_audios[]', :id => 'body_audio_'+show_chapter.id.to_s, class: 'body-audios' %><br>
+    <%= link_to 'Delete audio', delete_chapter_audio_work_url(:chapter_id => show_chapter.id) %>
     <%= hidden_field_tag 'body_audios_stub[]', '', :id => 'stub_audio_'+show_chapter.id.to_s, class: 'body-audios-stub'  %>
   </div>
+  <br>
+  <br>
   <div class="field">
     <%= label_tag :body_image, "Chapter image" %><br>
     <% if show_chapter.body_image? %>

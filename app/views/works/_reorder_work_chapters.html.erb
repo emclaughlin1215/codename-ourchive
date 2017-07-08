@@ -8,18 +8,20 @@
    <div class="col-md-4"><%= label_tag 'Chapter Summary' %></div>
    <div class="col-md-4"><%= label_tag 'Chapter Number' %></div>
  </div>
-<% @chapters.each do |chapter| %>
- <div class="row">
-   <div class="col-md-4">
-     <%= chapter.title %>
+<% if @chapters %>
+  <% @chapters.each do |chapter| %>
+   <div class="row">
+     <div class="col-md-4">
+       <%= chapter.title %>
+     </div>
+     <div class="col-md-4">
+       <%= chapter.chapter_summary %>
+     </div>
+     <div class="col-md-4">
+       <%= number_field_tag 'body_numbers[]', chapter.chapter_number, class: 'body-numbers'  %>
+     </div>
    </div>
-   <div class="col-md-4">
-     <%= chapter.chapter_summary %>
-   </div>
-   <div class="col-md-4">
-     <%= number_field_tag 'body_numbers[]', chapter.chapter_number, class: 'body-numbers'  %>
-   </div>
- </div>
+  <% end %>
 <% end %>
 </div>
 <div class="modal-footer" style="background-color: white;">

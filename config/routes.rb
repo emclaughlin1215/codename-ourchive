@@ -30,6 +30,9 @@ Rails.application.routes.draw do
     member do
       get 'delete_chapter_image'
     end
+    member do
+      get 'delete_chapter_audio'
+    end
   end
   resources :tests
   resources :search
