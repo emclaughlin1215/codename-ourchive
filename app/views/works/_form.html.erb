@@ -12,8 +12,8 @@
   <% end %>
   <% if !@is_edit %>
   <div class="field">
-    Please choose a type of work to post:
-    <%= f.select(:work_type, WorkType.all.collect {|t| [ t.type_name, t.type_key ] }, :selected => f.object.work_type) %>
+    <h4>Please choose a type of work to post:
+    <%= f.select(:work_type, WorkType.all.collect {|t| [ t.type_name, t.type_key ] }, :selected => f.object.work_type) %></h4>
     <%= f.hidden_field :work_id %>
   </div>
   <% else %>
@@ -22,14 +22,17 @@
       <%= f.hidden_field :work_id %>
     </div>
   <% end %>
+  <br>
+  <h3>Work Information</h3>
+  <hr>
   <div id="1_form">
     <div class="form-group">
-      <%= f.label :work_title %><br>
+      <%= f.label :work_title, "Title", :class=>"form-header" %>
       <%= f.text_field :work_title, :class=>"form-control" %>
       <%= f.hidden_field :work_id %> 
     </div>
     <div class="form-group">
-      <%= f.label :work_summary %><br>
+      <%= f.label :work_summary, "Summary", :class=>"form-header" %>
       <%= f.text_area :work_summary, :class=>"form-control", :rows=>"4" %>
     </div>
     <div class="field" style="display:none;">
@@ -54,17 +57,17 @@
     </div>
     <br/>
     <h3>Chapters</h3>
-    <br/>
+    <hr>
     <% if !@is_edit%>
       <div class="form-group" id="work_textbox">
         <div style="display:none;" id="chapter_text_label">
           <%= f.label :body_text, "Chapter text" %><br>
         </div>
         <div id="work_text_label">
-          <%= f.label :body_text, "Work text"%><br>
+          <%= f.label :body_text, "Body", :class=>"form-header"%><br>
         </div>
         <div id="work_image_label" style="display:none;">
-          <%= f.label "Upload File"%><br>
+          <%= f.label "Upload File", :class=>"form-header"%><br>
         </div>
         <%= f.text_area :body_text, :class=>"form-control", :rows=>"20", :id=>"body_text_field" %>
         <%= f.file_field :body_image, :class=>"form-control", :id=>"body_image_field", :style=>"display:none;height:auto;" %>
@@ -72,10 +75,11 @@
     <%else%>
         <%= render :partial => "works/show_chapter", :collection => @chapters %>
     <%end%>
-    <div class="field">
+    <div class="form-group">
         <ul id="new_chapters" class="chapters_ul">
         </ul>
       </div>
+      <br>
       <div class="field">
         <%= link_to 'Add Chapter', new_chapter_on_work_work_url(:work_id), remote: true, :id => 'add_chapter_link', :class=>"btn btn-default"%>
       </div>
@@ -83,7 +87,7 @@
     <br/>
     <br/>
     <h3>Tags</h3>
-    <br/>
+    <hr>
     <div class="field" id="1_tags_div">
       <%= f.label TagConfig.config["1"]["friendly"] %><br>
       <ul id="1_tags_list" class="tag_ul">
@@ -97,7 +101,7 @@
       <%= f.hidden_field :one_tags, :id => 'tags_to_add' %>
     </div>
     <div class="field" id="4_tags_div">
-      <%= f.label TagConfig.config["4"]["friendly"] %><br>
+      <%=  f.label TagConfig.config["4"]["friendly"] %>
       <ul id="4_tags_list" class="tag_ul">
         <% if @four_tags_list %>
           <% @four_tags_list.each do |i| %>
@@ -141,8 +145,13 @@
       </ul>
     </div>
     <div class="actions">
-      <%= f.submit "Submit", :class=>"btn btn-primary" %>
-    </div>
+      <%= link_to 'Back', works_path, :class=> "btn btn-default"%>
+      <% if @is_edt %>
+        <%= f.submit "Update", :class=>"btn btn-primary" %>
+      </div>
+      <% else %>
+        <%= f.submit "Save", :class=>"btn btn-primary" %>
+      <% end %>
     <div class="actions" id="multi_chapter_buttons" style="display:none;">
     </div>
   </div>
