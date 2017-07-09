@@ -180,6 +180,14 @@ $(document).ready(function() {
   $('.edit_chapter_link').click(function (event){
     var id = event.target.id.split("_").pop();
     $('#edit_partial_'+id).toggle();
+    if ($('#edit_partial_'+id).is(":visible") )
+    {
+        $('#show_chapter_'+id)["0"].innerHTML = "Close";
+    }
+    else
+    {
+        $('#show_chapter_'+id)["0"].innerHTML = "Edit";
+    }
   });
 
   $('#save-chapter-nums').click(function(event) {
