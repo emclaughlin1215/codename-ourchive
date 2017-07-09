@@ -57,11 +57,11 @@ class WorkCreationForm
         self.user_id = user.id
     end
     def update()
-      Work.update(work_id, :work_summary => work_summary, :title => work_title, :is_complete => is_complete,
-        :word_count => word_count, :total_chapters => total_chapters)
       @work = Work.find(work_id)
       update_tags()
-      update_chapters()
+      word_count = update_chapters()
+      Work.update(work_id, :work_summary => work_summary, :title => work_title, :is_complete => is_complete, :word_count => word_count,
+        :total_chapters => total_chapters)
     end
     private
 
@@ -70,7 +70,7 @@ class WorkCreationForm
           update()
         else
           @work = Work.create!(work_summary: work_summary, is_complete: is_complete, series_id: series_id,
-            word_count: body_text.split.size, total_chapters: total_chapters, is_series: is_series, user_id: user_id, title: work_title, work_type: work_type)
+            word_count: text_wordcount(body_text), total_chapters: total_chapters, is_series: is_series, user_id: user_id, title: work_title, work_type: work_type)
           if (work_type == 1)
             begin
               chapter = @work.chapters.create!(body_text: body_text, chapter_summary: work_summary, chapter_number: 1, title: work_title)
@@ -138,6 +138,7 @@ class WorkCreationForm
       counter = 0
       audio_counter = 0
       image_counter = 0
+      word_count = 0
       @work.chapters.order('chapter_number ASC').each do |chapter|
         chapter.body_text = @body_texts[counter] && @body_texts[counter] != "" ? @body_texts[counter] : chapter.body_text
         if (@images_stub[counter] != "")
@@ -154,20 +155,28 @@ class WorkCreationForm
         #chapter.update(chapter_summary: @summaries[counter], chapter_number: @body_numbers[counter], body_text: @body_texts[counter],
         #  body_audio: @body_audios[counter], body_image: @body_images[counter])
         counter = counter + 1
+        if (chapter.body_text)
+          word_count = word_count + text_wordcount(chapter.body_text)
+        end
       end
       if (@chapters)
         counter_title = 1
         @chapters.each do |chapter|
+          word_count = word_count + text_wordcount(chapter)
           create_chapter(chapter, counter, counter_title)
           counter_title = counter_title + 1
           counter = counter + 1
         end
       end
+      return word_count
     end
     def update_work
       puts current_work
     end
     def add_type_error
       self.errors[:base] << "Type invalid. Please choose a different file."
+    end
+    def text_wordcount(original)
+      return original.split.size
     end
 end

@@ -3,6 +3,7 @@ class SearchController < ApplicationController
 def index
   @work_types = WorkType.all.collect {|t| [ t.type_name, t.type_key ] }
   @work_types += ["All"]
+  @count = Work.distinct.count
 end
 
 def show
