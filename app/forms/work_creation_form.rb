@@ -105,7 +105,7 @@ class WorkCreationForm
           end
           one_tags_split = one_tags.to_s.split(",")
           one_tags_split.each do |tag|
-	    split = tag.split("~")
+	          split = tag.split("~")
             @tag = Tag.where(text: split[0], type_key: split[1]).first_or_create
             WorkTag.where(tag_id: @tag.id, work_id: @work.id).first_or_create
             TagSuggestion.add_tag(@tag)
@@ -152,8 +152,6 @@ class WorkCreationForm
         chapter.chapter_summary = @summaries[counter]
         chapter.chapter_number = @body_numbers[counter]
         chapter.save
-        #chapter.update(chapter_summary: @summaries[counter], chapter_number: @body_numbers[counter], body_text: @body_texts[counter],
-        #  body_audio: @body_audios[counter], body_image: @body_images[counter])
         counter = counter + 1
         if (chapter.body_text)
           word_count = word_count + text_wordcount(chapter.body_text)
