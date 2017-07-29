@@ -10,6 +10,7 @@ class TagsController < ApplicationController
   # GET /tags/1
   # GET /tags/1.json
   def show
+    @works = Work.joins(:tags).where('tags.id = (?)', params[:id]).references(:tags).distinct.paginate(:page => params[:page], :per_page => 25)
   end
 
   # GET /tags/new
