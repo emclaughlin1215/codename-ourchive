@@ -14,7 +14,9 @@ development: &base
   4: 
     system: "theme"
     friendly: "Theme(s)"
-
+  5:
+    system: "content"
+    friendly: "Warning(s)"
 test:
  <<: *base
 

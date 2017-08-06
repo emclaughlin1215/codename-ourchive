@@ -39,5 +39,12 @@
           <% end %>
         </ul>
     </dd>
+    <dt><%= TagConfig.config["5"]["friendly"] %></dt>
+    <dd> <ul class="list-inline">
+          <% result.tags.select{|tag| tag.type_key == 5}.each do |t| %>
+            <li><%= link_to t.text, tag_path(t.id)  %></li>
+          <% end %>
+        </ul>
+    </dd>
   </dl>
 <% end %>

@@ -173,6 +173,16 @@ $(document).ready(function() {
     }
   });
 
+  $('#5_tags_filter').autocomplete({
+    appendTo: '#new_work_creation_form',
+    source: '/tag_suggestions/?type=5',
+    select: function(event, ui) {
+      $('#5_tags_filter').val('');
+      create_work_tag(ui.item.label, "#5_tags_div ul", "#tags_to_add", $('#5_tags_filter'), 5);
+      return false;
+    }
+  });
+
   $(".btn").mouseup(function(){
     $(this).blur();
   });

@@ -126,6 +126,7 @@ class WorksController < ApplicationController
       @two_tags_list = @tags_list.select {|tag| 2 == tag.type_key }
       @three_tags_list = @tags_list.select {|tag| 3 == tag.type_key }
       @four_tags_list = @tags_list.select {|tag| 4 == tag.type_key}
+      @five_tags_list = @tags_list.select {|tag| 5 == tag.type_key }
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def work_params
