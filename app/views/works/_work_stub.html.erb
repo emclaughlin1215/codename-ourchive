@@ -2,7 +2,7 @@
 <div class="panel panel-default">
 <div class="panel-body">
   <div class="row">
-    <div class="col-md-12"><h3><%= link_to work.title, work_path(work.id) %> by <%= work.user.username %></h3></div>
+    <div class="col-md-12"><h3><%= link_to work.title, work_path(work.id) %> by <%= link_to work.user.username, creator_profile_url(:user_id => work.user.id) %></h3></div>
   </div>
   <div class="row">
     <div class="col-md-8 col-md-offset-1"><h5><%= work.work_summary %></h5></div>

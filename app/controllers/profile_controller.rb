@@ -18,5 +18,7 @@ class ProfileController < ApplicationController
       redirect_to new_user_session_path, notice: 'You are not currently logged in.'
     end
   end
-
+  def show_creator
+    @works = Work.where(user_id: params[:user_id])
+  end
 end

@@ -46,5 +46,6 @@ Rails.application.routes.draw do
   root 'search#index'
   match '/tag_suggestions', to: 'tag_suggestions#index', via: :get
   get 'profile' => "profile#show"
+  get 'creator_profile' => "profile#show_creator"
   get 'edit_user_info' => "profile#edit_user_info", via: :get
 end
