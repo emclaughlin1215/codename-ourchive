@@ -1,5 +1,36 @@
-<div class="work_text">
 <% chapter_number = chapter_number.to_i %>
-<%= simple_format(chapters[chapter_number-1].body_text) %>
+<div class="work_text">
+	<div class="row">
+		<div class="col-md-12"><h2><%= chapters[chapter_number-1].title %></h2></div>
+	</div>
+	<div class="row">
+		<div class="col-md-12"><blockquote><%= chapters[chapter_number-1].chapter_summary %></blockquote></div>
+	</div>
+	<hr/>
+	<% if chapters[chapter_number-1].body_audio? %>
+		<div class="row">
+			<div class="col-md-12">			
+	      		<%= link_to 'Download Audio', chapters[chapter_number-1].body_audio.url, :class => "play" %> 
+	      	</div>
+		</div>
+		<br/>
+		<hr/>
+	<% end %>
+	<% if chapters[chapter_number-1].body_image? %>		
+		<div class="row">
+			<div class="col-md-12">				
+			      <%= image_tag(chapters[chapter_number-1].body_image.url) %>			    
+			</div>
+		</div>
+		<br/>
+		<hr/>
+	<% end %>
+	<% if chapters[chapter_number-1].body_text? %>	
+		<div class="row">
+			<div class="col-md-12">
+				<%= simple_format(chapters[chapter_number-1].body_text) %>
+			</div>
+		</div>
+	<% end %>
 </div>
 <br>
