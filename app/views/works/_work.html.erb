@@ -16,7 +16,7 @@
   </div>
   <hr>
   <div class="row">
-    <div class="col-md-12"><h5><%= @work.work_summary %></h5></div>
+    <div class="col-md-12"><h4><%= @work.work_summary %></h4></div>
   </div>
   <div class="row">
     <div class="col-md-2 col-md-offset-6"><h5>Chapters: <%= @work.chapters.count %></h5></div>
@@ -94,9 +94,11 @@
       <%= link_to "Back", decrement_chapter_work_path(:chapter_count => @chapter_count), :remote => true, :id => 'back-link',
       :style => 'display: none;' %>
     </div>
-    <div class="col-md-1 col-md-offset-10" id="next-link-div">
-      <%= link_to "Next", increment_chapter_work_path(:chapter_count => @chapter_count + 1), :remote => true, :id => 'next-link' %>
-    </div>
+    <% if @work.chapters.count > 1 %>
+      <div class="col-md-1 col-md-offset-10" id="next-link-div">
+        <%= link_to "Next", increment_chapter_work_path(:chapter_count => @chapter_count + 1), :remote => true, :id => 'next-link' %>
+      </div>
+    <% end %>
   </div>
 </div>
 <% end %>
