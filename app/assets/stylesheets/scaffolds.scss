@@ -1,6 +1,6 @@
 body {
   background-color: #fff;
-  color: #333;
+  color: #0F114D;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 18px;
   line-height: 12px;
@@ -10,25 +10,17 @@ p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 18px;
   line-height: 24px;  
+  color: #0F114D;
+}
+
+h1, h2, h3, h4, h5, blockquote {
+  color: #0F114D;
 }
 
 pre {
   background-color: #eee;
   padding: 10px;
   font-size: 15px;
-}
-
-a {
-  color: #000;
-
-  &:visited {
-    color: #666;
-  }
-
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
 }
 
 div {
