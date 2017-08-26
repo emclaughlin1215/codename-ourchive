@@ -36,9 +36,17 @@ class WorksController < ApplicationController
     chapter.save
     redirect_to edit_work_path
   end
+  def increment_chapter
+    @chapters = Work.find(params[:id]).chapters
+    @chapter_count = params[:chapter_count].to_i + 1
+    respond_to do |format|
+      format.js {render layout: false}
+    end
+  end
   # GET /works/1
   # GET /works/1.json
   def show
+    @chapter_count = 0
   end
 
   # GET /works/new
@@ -53,10 +61,14 @@ class WorksController < ApplicationController
 
   # GET /works/1/edit
   def edit
-    @work = Work.includes(:tags).find(params[:id])
-    @chapters = @work.chapters.order('chapter_number ASC')
-    @work_creation_form.set_user!(current_user)
-    @is_edit = true
+    if !current_user
+      redirect_to new_user_session_path, notice: 'You are not currently logged in.'
+    else
+      @work = Work.includes(:tags).find(params[:id])
+      @chapters = @work.chapters.order('chapter_number ASC')
+      @work_creation_form.set_user!(current_user)
+      @is_edit = true
+    end
   end
 
   # POST /works

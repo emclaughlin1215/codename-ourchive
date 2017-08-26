@@ -75,10 +75,13 @@
   </div>
   <div class="panel-body">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-12" id="chapter-partial">
       <% if @work.chapters.count > 0 %><%= render :partial => "works/chapter_read", locals: {chapter_number: 0, chapters: @work.chapters} %><% end %>
     </div>
-    </div>
+  </div>
+  <%= hidden_field_tag 'chapter_number', 0 %>
+  <div class="row" id="next-link-div">
+    <%= link_to "Next", increment_chapter_work_path(:chapter_count => @chapter_count), :remote => true, :id => 'next-link' %>
   </div>
 </div>
 <% end %>

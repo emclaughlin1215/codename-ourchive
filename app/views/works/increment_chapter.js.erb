@@ -1,0 +1,13 @@
+<% if @chapters.count > @chapter_count %>
+var id = parseInt($('#chapter_number').val());
+id = id +1;
+//ar attr = $('#next-link').attr("href");
+//alert(attr);
+$('#next-link').attr("href", "/works/62/increment_chapter?chapter_count="+id);
+$('#chapter-partial').replaceWith("<div class='col-md-12' id='chapter-partial'><%= escape_javascript(render :partial => 'works/chapter_read', locals: {chapter_number: @chapter_count, chapters: @chapters}) %></div>");
+$('input[type=hidden]#chapter_number').val(id);
+<% elsif @chapters.count == @chapter_count %>
+
+$('#next-link').remove();
+	
+<% end %>

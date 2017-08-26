@@ -33,6 +33,9 @@ Rails.application.routes.draw do
     member do
       get 'delete_chapter_audio'
     end
+    member do
+      get 'increment_chapter'
+    end
   end
   resources :tests
   resources :search
