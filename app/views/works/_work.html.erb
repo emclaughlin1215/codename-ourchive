@@ -90,7 +90,8 @@
   <br/>
   <div class="row">
     <div class="col-md-1" id="back-link-div">
-      <%= link_to "Back", decrement_chapter_work_path(:chapter_count => @chapter_count), :remote => true, :id => 'back-link' %>
+      <%= link_to "Back", decrement_chapter_work_path(:chapter_count => @chapter_count), :remote => true, :id => 'back-link',
+      :style => 'display: none;' %>
     </div>
     <div class="col-md-1 col-md-offset-10" id="next-link-div">
       <%= link_to "Next", increment_chapter_work_path(:chapter_count => @chapter_count + 1), :remote => true, :id => 'next-link' %>
