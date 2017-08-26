@@ -66,6 +66,9 @@ $(document).ready(function() {
       $('#work_image_label').show();
       $('#body_image_field').show();
     }
+  audiojs.events.ready(function() {
+    var as = audiojs.createAll();
+  });
   $('#add_chapter_link').one('click', function() {
     add_chapter_first_click();
   });

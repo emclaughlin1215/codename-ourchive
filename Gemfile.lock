@@ -41,6 +41,8 @@ GEM
     airbrussh (1.2.0)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (7.1.4)
+    audiojs-rails (1.0.1)
+      railties (>= 3.1)
     autoprefixer-rails (6.7.7.2)
       execjs
     axiom-types (0.1.1)
@@ -243,6 +245,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  audiojs-rails
   autoprefixer-rails (~> 6.7.7.2)
   bcrypt (~> 3.1.7)
   bootstrap-sass (~> 3.3.6)

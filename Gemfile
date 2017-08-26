@@ -20,7 +20,7 @@ gem 'paperclip', '~> 5.0.0'
 gem 'autoprefixer-rails', '~> 6.7.7.2'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'redis', '~>3.2'
-
+gem 'audiojs-rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
