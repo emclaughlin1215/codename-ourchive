@@ -1,0 +1,73 @@
+<% cache work do %>
+<div class="panel panel-default">
+<div class="panel-body">
+  <div class="row">
+    <div class="col-md-12"><h3><%= link_to work.title, work_path(work.id) %> by <%= work.user.username %></h3></div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-1"><h5><%= work.work_summary %></h5></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"><h5>Chapters: <%= work.chapters.count %></h5></div>
+    <div class="col-md-2"><h5>Complete? <% if work.is_complete %>Yes<% else %>No<%end%></h5></div>
+    <div class="col-md-2"><h5>Word Count: <%= work.word_count %></h5></div>
+  </div>
+  </div>
+  <div class="panel-footer">
+  <div class="row">
+    <div class="col-md-12"> <ul class="list-inline">
+      <li><%= TagConfig.config["0"]["friendly"] %>:</li>
+          <% work.tags.select{|tag| tag.type_key == 0}.each do |t| %>
+            <li><%= t.text %></li>
+          <% end %>
+        </ul>
+    </div>
+  </div> 
+  <div class="row">
+    <div class="col-md-12"><ul class="list-inline">
+      <li><%= TagConfig.config["1"]["friendly"] %>:</li>
+          <% work.tags.select{|tag| tag.type_key == 1}.each do |t| %>
+            <li><%= link_to t.text, tag_path(t.id)  %></li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12"><ul class="list-inline">
+        <li><%= TagConfig.config["2"]["friendly"] %>:</li>
+          <% work.tags.select{|tag| tag.type_key == 2}.each do |t| %>
+            <li><%= link_to t.text, tag_path(t.id)  %></li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12"><ul class="list-inline">
+        <li><%= TagConfig.config["3"]["friendly"] %>:</li>
+          <% work.tags.select{|tag| tag.type_key == 3}.each do |t| %>
+            <li><%= link_to t.text, tag_path(t.id)  %></li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12"><ul class="list-inline">
+        <li><%= TagConfig.config["4"]["friendly"] %>:</li>
+          <% work.tags.select{|tag| tag.type_key == 4}.each do |t| %>
+            <li><%= link_to t.text, tag_path(t.id)  %></li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12"><ul class="list-inline">
+        <li><%= TagConfig.config["5"]["friendly"] %>:</li>
+          <% work.tags.select{|tag| tag.type_key == 5}.each do |t| %>
+            <li><%= link_to t.text, tag_path(t.id)  %></li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+  </div>
+</div>
+<% end %>
