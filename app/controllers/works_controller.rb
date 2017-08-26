@@ -38,7 +38,14 @@ class WorksController < ApplicationController
   end
   def increment_chapter
     @chapters = Work.find(params[:id]).chapters
-    @chapter_count = params[:chapter_count].to_i + 1
+    @chapter_count = params[:chapter_count].to_i
+    respond_to do |format|
+      format.js {render layout: false}
+    end
+  end
+  def decrement_chapter
+    @chapters = Work.find(params[:id]).chapters
+    @chapter_count = params[:chapter_count].to_i
     respond_to do |format|
       format.js {render layout: false}
     end
@@ -46,7 +53,7 @@ class WorksController < ApplicationController
   # GET /works/1
   # GET /works/1.json
   def show
-    @chapter_count = 0
+    @chapter_count = 1
   end
 
   # GET /works/new

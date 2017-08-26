@@ -1,6 +1,13 @@
 <% cache @work do %>
 <div class="panel panel-default">
 <div class="panel-body">
+  <% if current_user %>
+    <% if current_user.id == @work.user_id %>
+      <div class="row">
+        <div class="col-md-3"><%= link_to "Edit", edit_work_path %> | <%= link_to 'Delete', @ork, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+      </div>
+    <% end %>
+  <% end %>
   <div class="row">
     <div class="col-md-12"><h1><%= @work.title %></h1></div>
   </div>
@@ -76,12 +83,18 @@
   <div class="panel-body">
   <div class="row">
     <div class="col-md-12" id="chapter-partial">
-      <% if @work.chapters.count > 0 %><%= render :partial => "works/chapter_read", locals: {chapter_number: 0, chapters: @work.chapters} %><% end %>
+      <% if @work.chapters.count > 0 %><%= render :partial => "works/chapter_read", locals: {chapter_number: 1, chapters: @work.chapters} %><% end %>
     </div>
   </div>
-  <%= hidden_field_tag 'chapter_number', 0 %>
-  <div class="row" id="next-link-div">
-    <%= link_to "Next", increment_chapter_work_path(:chapter_count => @chapter_count), :remote => true, :id => 'next-link' %>
+  <%= hidden_field_tag 'chapter_number', 1 %>
+  <br/>
+  <div class="row">
+    <div class="col-md-1" id="back-link-div">
+      <%= link_to "Back", decrement_chapter_work_path(:chapter_count => @chapter_count), :remote => true, :id => 'back-link' %>
+    </div>
+    <div class="col-md-1 col-md-offset-10" id="next-link-div">
+      <%= link_to "Next", increment_chapter_work_path(:chapter_count => @chapter_count + 1), :remote => true, :id => 'next-link' %>
+    </div>
   </div>
 </div>
 <% end %>

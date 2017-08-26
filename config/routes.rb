@@ -36,6 +36,9 @@ Rails.application.routes.draw do
     member do
       get 'increment_chapter'
     end
+    member do
+      get 'decrement_chapter'
+    end
   end
   resources :tests
   resources :search
