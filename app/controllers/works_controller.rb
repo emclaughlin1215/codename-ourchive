@@ -102,7 +102,8 @@ class WorksController < ApplicationController
       @work_creation_form.set_edit_chapters(params[:summaries], params[:body_numbers], params[:body_texts],
         params[:body_audios], params[:body_images], params[:body_images_stub], params[:body_audios_stub])
       @work_creation_form.update()
-      redirect_to works_path, notice: 'Work was successfully updated.'
+      @work = Work.find(work_id)
+      redirect_to @work, notice: 'Work was successfully updated.'
     end
   end
   # PATCH/PUT /works/1

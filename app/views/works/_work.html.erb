@@ -80,13 +80,14 @@
     </div>
   </div>
   </div>
-  <div class="panel-body">
+  <div class="panel-body" id="chapter-body">
   <div class="row">
     <div class="col-md-12" id="chapter-partial">
       <% if @work.chapters.count > 0 %><%= render :partial => "works/chapter_read", locals: {chapter_number: 1, chapters: @work.chapters} %><% end %>
     </div>
   </div>
   <%= hidden_field_tag 'chapter_number', 1 %>
+  <%= hidden_field_tag 'work_id', @work.id %>
   <br/>
   <div class="row">
     <div class="col-md-1" id="back-link-div">

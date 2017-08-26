@@ -69,6 +69,7 @@ class WorkCreationForm
         if (work_id && work_id != "")
           update()
         else
+          word_count = text_wordcount(body_text)
           @work = Work.create!(work_summary: work_summary, is_complete: is_complete, series_id: series_id,
             word_count: text_wordcount(body_text), total_chapters: total_chapters, is_series: is_series, user_id: user_id, title: work_title, work_type: work_type)
           if (work_type == 1)
@@ -101,6 +102,7 @@ class WorkCreationForm
             @chapters.each do |chapter|
               create_chapter(chapter, counter, counter)
               counter = counter + 1
+              word_count += text_wordcount(body_text)
             end
           end
           one_tags_split = one_tags.to_s.split(",")
@@ -110,6 +112,7 @@ class WorkCreationForm
             WorkTag.where(tag_id: @tag.id, work_id: @work.id).first_or_create
             TagSuggestion.add_tag(@tag)
           end
+          Work.update(@work.id, word_count: word_count)
         end
     end
     def create_chapter(chapter, counter, counter_title)

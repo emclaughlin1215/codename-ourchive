@@ -4,13 +4,15 @@
 <% end %>
 $('#back-link').show();
 var oldId = parseInt($('#chapter_number').val());
+var workId = $('#work_id').val();
 var id = oldId - 1;
 var back = id - 1;
-$('#next-link').attr("href", "/works/62/increment_chapter?chapter_count="+oldId);
-$('#back-link').attr("href", "/works/62/decrement_chapter?chapter_count="+back);
+$('#next-link').attr("href", "/works/"+workId+"/increment_chapter?chapter_count="+oldId);
+$('#back-link').attr("href", "/works/"+workId+"/decrement_chapter?chapter_count="+back);
 $('#chapter-partial').replaceWith("<div class='col-md-12' id='chapter-partial'><%= escape_javascript(render :partial => 'works/chapter_read', locals: {chapter_number: @chapter_count, chapters: @chapters}) %></div>");
 $('input[type=hidden]#chapter_number').val(id);
 <% if @chapter_count -1 == 0 %>
 	$('#back-link').hide();
 <% end %>	
+$('body, html, #chapter-body').scrollTop(500);
 <% end %>
