@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require tus
 //= require jquery_ujs
 //= require audiojs
 //= require bootstrap/modal

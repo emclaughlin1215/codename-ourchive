@@ -16,6 +16,7 @@ class WorkCreationForm
     attribute :work_type, Integer    
     attribute :work_id, Integer
     attribute :tags_to_remove, String
+    attribute :body_image_hidden, String
     #attribute :body_external, String
     #attribute :body_audio, File
     attribute :body_image, UploadedFile
@@ -90,11 +91,23 @@ class WorkCreationForm
             end
           elsif(work_type == 0)
             begin
-              chapter = @work.chapters.create!(body_audio: body_image, chapter_summary: work_summary, chapter_number: 1, title: work_title)
-            rescue 
-              add_type_error
-              @work.destroy
-              return false
+              location = body_image_hidden.split("files/")[1]
+              open(Pathname.new("/home/elena/projects/tus-server/data/"+location)) do |f|
+                pict = Chapter.new(:body_audio => f)
+                # a side affect of saving is that paperclip transformation will
+                # happen
+                pict.save!
+              end
+              #TODO: remove file param entirely
+              # test chapter creation with ginormous audio
+              # delete file after it's processed
+              # re-link chapter with work
+              # fix body_audios[] for multi-add
+              #chapter = @work.chapters.create!(body_audio: body_image, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+            #rescue               
+            #  add_type_error
+            #  @work.destroy
+            #  return false
             end
           end
           counter = 1
