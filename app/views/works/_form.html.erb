@@ -70,7 +70,7 @@
           <%= f.label "Upload File", :class=>"form-header"%><br>
         </div>
         <%= f.text_area :body_text, :class=>"form-control", :rows=>"20", :id=>"body_text_field" %>
-        <%= f.file_field :file, :class=>"form-control", :id=>"body_image_field", :style=>"display:none;height:auto;" %>
+        <%= f.file_field "File", :class=>"form-control", :id=>"body_image_field", :style=>"display:none;height:auto;" %>
         <%= f.hidden_field :body_image_hidden, :id => "body_image_hidden" %>
       </div>
     <%else%>
@@ -187,8 +187,20 @@ $('#body_image_field').change(function(e) {
         },
         onSuccess: function() {
             //alert($('#body_image_hidden'));
-            $('#body_image_hidden').val(upload.url);
+            var url = upload.url;
+            var split = url.split("files")[1];
+            var fileData = {
+              id: "/home/elena/projects/tus-server/data" + split,
+              storage: "cache",
+              metadata: {
+                filename:  upload.file.name.match(/[^\/\\]+$/)[0], // IE returns full path
+                size:      upload.file.size,
+                mime_type: upload.file.type,
+              }
+            };
+            $('#body_image_hidden').val(JSON.stringify(fileData));
             console.log("Download %s from %s", upload.file.name, upload.url)
+            $('#body_image_field').remove();
         }
     });
     upload.start();

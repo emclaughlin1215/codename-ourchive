@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170514171419) do
+ActiveRecord::Schema.define(version: 20170829024339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20170514171419) do
     t.string   "body_audio_content_type"
     t.integer  "body_audio_file_size"
     t.datetime "body_audio_updated_at"
+    t.string   "chapter_audio_data"
     t.index ["work_id"], name: "index_chapters_on_work_id", using: :btree
   end
 
