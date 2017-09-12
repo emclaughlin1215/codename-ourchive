@@ -1,0 +1,2 @@
+development: &base
+  0: "/home/elena/projects/tus-server/data"

@@ -72,6 +72,7 @@
         <%= f.text_area :body_text, :class=>"form-control", :rows=>"20", :id=>"body_text_field" %>
         <%= f.file_field "File", :class=>"form-control", :id=>"body_image_field", :style=>"display:none;height:auto;" %>
         <%= f.hidden_field :body_image_hidden, :id => "body_image_hidden" %>
+        <%= f.label TempConfig.config["0"], :id=>"temp_loc", :style=>"display:none;"  %>
       </div>
     <%else%>
         <%= render :partial => "works/show_chapter", :collection => @chapters %>
@@ -189,8 +190,9 @@ $('#body_image_field').change(function(e) {
             //alert($('#body_image_hidden'));
             var url = upload.url;
             var split = url.split("files")[1];
+            var temp_loc = $('#temp_loc').html();
             var fileData = {
-              id: "/home/elena/projects/tus-server/data" + split,
+              id: temp_loc + split,
               storage: "cache",
               metadata: {
                 filename:  upload.file.name.match(/[^\/\\]+$/)[0], // IE returns full path
