@@ -94,10 +94,6 @@ class WorkCreationForm
             begin
               chapter =  @work.chapters.create!(chapter_audio: body_image_hidden, chapter_summary: work_summary, chapter_number: 1, title: work_title)
               #TODO: remove file param entirely
-              # test chapter creation with ginormous audio
-              # delete file after it's processed
-              # re-link chapter with work
-              # fix body_audios[] for multi-add
               #chapter = @work.chapters.create!(body_audio: body_image, chapter_summary: work_summary, chapter_number: 1, title: work_title)
             rescue               
               add_type_error
