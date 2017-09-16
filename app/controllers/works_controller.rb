@@ -83,11 +83,16 @@ class WorksController < ApplicationController
   def create
     permitted_params = work_creation_form_params.to_h
     work_id = permitted_params[:work_id].to_s
-    puts permitted_params
     if (work_id == "")
       @work_creation_form = WorkCreationForm.new(permitted_params)
       @work_creation_form.set_user!(current_user)
-      @work_creation_form.set_chapters(params[:chapters], params[:titles])
+      puts params[:work_creation_form][:work_type]
+      puts "WORK TYPE ^"
+      if params[:work_creation_form][:work_type] == "0"
+        @work_creation_form.set_audio_chapters(params[:work_creation_form][:chapter_audios], params[:titles])
+      else
+        @work_creation_form.set_chapters(params[:chapters], params[:titles])
+      end      
       respond_to do |format|
         if @work_creation_form.save
           format.html { redirect_to works_path, notice: 'Work was successfully created.' }
@@ -99,7 +104,7 @@ class WorksController < ApplicationController
       end
     else
       @work_creation_form = WorkCreationForm.new(permitted_params)
-      @work_creation_form.set_chapters(params[:chapters], params[:titles])
+      @work_creation_form.set_chapters(params[:chapters], params[:titles])      
       @work_creation_form.set_edit_chapters(params[:summaries], params[:body_numbers], params[:body_texts],
         params[:body_audios], params[:body_images], params[:body_images_stub], params[:body_audios_stub])
       @work_creation_form.update()

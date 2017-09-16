@@ -37,6 +37,14 @@ class WorkCreationForm
       @chapters = chapters_param
       @chapter_titles = titles_param
     end
+    def set_audio_chapters(audios_param, titles_param)
+      @chapter_titles = titles_param
+      audios = audios_param.to_s.split("\r\n")
+      @chapters = []
+      audios.each do |audio|
+        @chapters << audio
+      end
+    end
     def set_edit_chapters(summaries_param, body_numbers_param, body_texts_param, body_audios_param, body_images_param,
     body_images_stub_param, body_audios_stub_param )
       @summaries = summaries_param
@@ -93,8 +101,6 @@ class WorkCreationForm
           elsif(work_type == 0)
             begin
               chapter =  @work.chapters.create!(chapter_audio: body_image_hidden, chapter_summary: work_summary, chapter_number: 1, title: work_title)
-              #TODO: remove file param entirely
-              #chapter = @work.chapters.create!(body_audio: body_image, chapter_summary: work_summary, chapter_number: 1, title: work_title)
             rescue               
               add_type_error
               @work.destroy
@@ -125,7 +131,7 @@ class WorkCreationForm
         elsif (work_type == 2)
           @work.chapters.create!(body_image: chapter, chapter_summary: work_summary, chapter_number: counter+1, title: @chapter_titles[counter_title - 1])
         elsif(work_type == 0)
-          @work.chapters.create!(body_audio: chapter, chapter_summary: work_summary, chapter_number: counter+1, title: @chapter_titles[counter_title - 1])
+          @work.chapters.create!(chapter_audio: chapter, chapter_summary: work_summary, chapter_number: counter+1, title: @chapter_titles[counter_title - 1])
         end
     end
     def update_tags
