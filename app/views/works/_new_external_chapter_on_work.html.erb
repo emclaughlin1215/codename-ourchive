@@ -4,6 +4,47 @@
 </div>
 <div class="form-group">
     <%= label_tag 'texts', "File" %>
-    <%= file_field_tag 'chapters[]', class: 'form-control', style: 'height:auto;' %>
+    <%= file_field_tag 'chapters[]', class: 'form-control tus-file', style: 'height:auto;' %>
 </div>
 <hr>
+<script>
+$('.tus-file').change(function(e) {
+    var file = e.target.files[0];
+    var upload = new tus.Upload(file, {
+        endpoint: "http://127.0.0.1:9292/files",
+        retryDelays: [0, 1000, 3000, 5000],
+        onError: function(error) {
+            console.log("Failed because: " + error)
+        },
+        onProgress: function(bytesUploaded, bytesTotal) {
+            var percentage = (bytesUploaded / bytesTotal * 100).toFixed(2)
+            console.log(bytesUploaded, bytesTotal, percentage + "%")
+        },
+        onSuccess: function() {
+            //alert($('#body_image_hidden'));
+            var url = upload.url;
+            var split = url.split("files")[1];
+            var temp_loc = $('#temp_loc').html();
+            var fileData = {
+              id: temp_loc + split,
+              storage: "cache",
+              metadata: {
+                filename:  upload.file.name.match(/[^\/\\]+$/)[0], // IE returns full path
+                size:      upload.file.size,
+                mime_type: upload.file.type,
+              }
+            };
+            var hiddenTag = $('#chapter_files').val();
+			if (hiddenTag != '') {
+			  $('#chapter_files').val(hiddenTag + "\n" + JSON.stringify(fileData));
+			}
+			else {
+			  $('#chapter_files').val(JSON.stringify(fileData));
+			}
+            //$('#chapter_files').val(JSON.stringify(fileData));
+            $('#chapters_').remove();
+        }
+    });
+    upload.start();
+});
+</script>

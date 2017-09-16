@@ -222,4 +222,38 @@ $(document).ready(function() {
     var id = event.target.id.split("_").pop();
     $('#stub_audio_'+id).val("changed");
   });
+
+  $('.tus-file').change(function(e) {
+    var file = e.target.files[0];
+    var upload = new tus.Upload(file, {
+        endpoint: "http://127.0.0.1:9292/files",
+        retryDelays: [0, 1000, 3000, 5000],
+        onError: function(error) {
+            console.log("Failed because: " + error)
+        },
+        onProgress: function(bytesUploaded, bytesTotal) {
+            var percentage = (bytesUploaded / bytesTotal * 100).toFixed(2)
+            console.log(bytesUploaded, bytesTotal, percentage + "%")
+        },
+        onSuccess: function() {
+            //alert($('#body_image_hidden'));
+            var url = upload.url;
+            var split = url.split("files")[1];
+            var temp_loc = $('#temp_loc').html();
+            var fileData = {
+              id: temp_loc + split,
+              storage: "cache",
+              metadata: {
+                filename:  upload.file.name.match(/[^\/\\]+$/)[0], // IE returns full path
+                size:      upload.file.size,
+                mime_type: upload.file.type,
+              }
+            };
+            $('#body_image_hidden').val(JSON.stringify(fileData));
+            console.log("Download %s from %s", upload.file.name, upload.url)
+            $('#body_image_field').remove();
+        }
+    });
+    upload.start();
+});
 });

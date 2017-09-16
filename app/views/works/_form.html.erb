@@ -70,7 +70,7 @@
           <%= f.label "Upload File", :class=>"form-header"%><br>
         </div>
         <%= f.text_area :body_text, :class=>"form-control", :rows=>"20", :id=>"body_text_field" %>
-        <%= f.file_field "File", :class=>"form-control", :id=>"body_image_field", :style=>"display:none;height:auto;" %>
+        <%= f.file_field "File", :class=>"form-control tus-file", :id=>"body_image_field", :style=>"display:none;height:auto;" %>
         <%= f.hidden_field :body_image_hidden, :id => "body_image_hidden" %>
         <%= f.label TempConfig.config["0"], :id=>"temp_loc", :style=>"display:none;"  %>
       </div>
@@ -86,6 +86,7 @@
         <%= link_to 'Add Chapter', new_chapter_on_work_work_url(:work_id), remote: true, :id => 'add_chapter_link', :class=>"btn btn-default"%>
       </div>
     <%= f.hidden_field :tags_to_remove, :id => 'tags_to_remove' %>
+    <%= f.hidden_field :chapter_audios, :id=>'chapter_files' %>
     <br/>
     <br/>
     <h3>Tags</h3>
@@ -169,42 +170,10 @@
     </div>
   </div>
   <div class="modal fade" id="modal-window" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
- <%= render :partial => "works/reorder_work_chapters" %>
- </div>
+    <%= render :partial => "works/reorder_work_chapters" %>
+  </div>
 <% end %>
 <script>
 var item = document.getElementsByClassName('.monique-close-icon'); 
-$('#body_image_field').change(function(e) {
-    var file = e.target.files[0];
-    var upload = new tus.Upload(file, {
-        endpoint: "http://127.0.0.1:9292/files",
-        retryDelays: [0, 1000, 3000, 5000],
-        onError: function(error) {
-            console.log("Failed because: " + error)
-        },
-        onProgress: function(bytesUploaded, bytesTotal) {
-            var percentage = (bytesUploaded / bytesTotal * 100).toFixed(2)
-            console.log(bytesUploaded, bytesTotal, percentage + "%")
-        },
-        onSuccess: function() {
-            //alert($('#body_image_hidden'));
-            var url = upload.url;
-            var split = url.split("files")[1];
-            var temp_loc = $('#temp_loc').html();
-            var fileData = {
-              id: temp_loc + split,
-              storage: "cache",
-              metadata: {
-                filename:  upload.file.name.match(/[^\/\\]+$/)[0], // IE returns full path
-                size:      upload.file.size,
-                mime_type: upload.file.type,
-              }
-            };
-            $('#body_image_hidden').val(JSON.stringify(fileData));
-            console.log("Download %s from %s", upload.file.name, upload.url)
-            $('#body_image_field').remove();
-        }
-    });
-    upload.start();
-});
+
 </script>
