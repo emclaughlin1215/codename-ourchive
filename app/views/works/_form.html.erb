@@ -70,8 +70,8 @@
           <%= f.label "Upload File", :class=>"form-header"%><br>
         </div>
         <%= f.text_area :body_text, :class=>"form-control", :rows=>"20", :id=>"body_text_field" %>
-        <div id="audio_fields" style="display:none;">          
-          <%= f.file_field "File", :class=>"form-control tus-file", :id=>"body_audio_field", :style=>"height:auto;" %>
+        <div id="audio_fields" style="display:none;">  
+          <input class="form-control tus-file" id="body_audio_field" style="height:auto;" type="file">        
           <%= f.hidden_field :body_audio_hidden, :id => "body_audio_hidden" %>
           <%= f.label TempConfig.config["0"], :id=>"temp_loc", :style=>"display:none;"  %>
         </div>
