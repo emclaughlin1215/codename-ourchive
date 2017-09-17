@@ -6,7 +6,7 @@ class WorksController < ApplicationController
   # GET /works.json
   def index
     if current_user
-      @works = Work.where(user_id: current_user.id)
+      @works = Work.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 25)
     else
       redirect_to new_user_session_path, notice: 'You are not currently logged in.'
     end

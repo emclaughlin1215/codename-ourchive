@@ -1,39 +1,9 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Works</h1>
+<h1>Works by <%= current_user.username %></h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Work summary</th>
-      <th>Is series</th>
-      <th>Is complete</th>
-      <th>Series</th>
-      <th>Collection</th>
-      <th>Word count</th>
-      <th>Total chapters</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @works.each do |work| %>
-      <tr>
-        <td><%= work.work_summary %></td>
-        <td><%= work.is_series %></td>
-        <td><%= work.is_complete %></td>
-        <td><%= work.series_id %></td>
-        <td><%= work.collection_id %></td>
-        <td><%= work.word_count %></td>
-        <td><%= work.total_chapters %></td>
-        <td><%= link_to 'Show', work %></td>
-        <td><%= link_to 'Edit', edit_work_path(work) %></td>
-        <td><%= link_to 'Destroy', work, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<%= render partial: 'work_list', collection: @works, cached: true%>
+<%= will_paginate @works %>
 <br>
 
 <%= link_to 'New Work', new_work_path %>
