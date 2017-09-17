@@ -16,7 +16,7 @@ class WorkCreationForm
     attribute :work_type, Integer    
     attribute :work_id, Integer
     attribute :tags_to_remove, String
-    attribute :body_image_hidden, Hash
+    attribute :body_audio_hidden, Hash
     attribute :chapter_audios, String
     #attribute :body_external, String
     #attribute :body_audio, File
@@ -100,7 +100,7 @@ class WorkCreationForm
             end
           elsif(work_type == 0)
             begin
-              chapter =  @work.chapters.create!(chapter_audio: body_image_hidden, chapter_summary: work_summary, chapter_number: 1, title: work_title)
+              chapter =  @work.chapters.create!(chapter_audio: body_audio_hidden, chapter_summary: work_summary, chapter_number: 1, title: work_title)
             rescue               
               add_type_error
               @work.destroy

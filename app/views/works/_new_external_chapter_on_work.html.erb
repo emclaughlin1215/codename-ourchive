@@ -21,7 +21,6 @@ $('.tus-file').change(function(e) {
             console.log(bytesUploaded, bytesTotal, percentage + "%")
         },
         onSuccess: function() {
-            //alert($('#body_image_hidden'));
             var url = upload.url;
             var split = url.split("files")[1];
             var temp_loc = $('#temp_loc').html();
@@ -41,8 +40,6 @@ $('.tus-file').change(function(e) {
 			else {
 			  $('#chapter_files').val(JSON.stringify(fileData));
 			}
-            //$('#chapter_files').val(JSON.stringify(fileData));
-            $('#chapters_').remove();
         }
     });
     upload.start();

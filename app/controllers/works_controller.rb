@@ -161,6 +161,6 @@ class WorksController < ApplicationController
 
     def work_creation_form_params
       params.require(:work_creation_form).permit(:work_summary, :work_title, :is_complete, :series_id, :collection_id, :word_count, :total_chapters, :is_series, :body_text, :character_tags, :theme_tags, :fandom_tags, :primary_pairing_tags, :secondary_pairing_tags, :one_tags, :work_type, :work_id, :tags_to_remove,
-        :body_image, :body_image_hidden, :chapter_audios)
+        :body_image, :body_audio_hidden, :chapter_audios)
     end
 end

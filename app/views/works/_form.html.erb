@@ -66,13 +66,18 @@
         <div id="work_text_label">
           <%= f.label :body_text, "Body", :class=>"form-header"%><br>
         </div>
-        <div id="work_image_label" style="display:none;">
+        <div id="work_file_label" style="display:none;">
           <%= f.label "Upload File", :class=>"form-header"%><br>
         </div>
         <%= f.text_area :body_text, :class=>"form-control", :rows=>"20", :id=>"body_text_field" %>
-        <%= f.file_field "File", :class=>"form-control tus-file", :id=>"body_image_field", :style=>"display:none;height:auto;" %>
-        <%= f.hidden_field :body_image_hidden, :id => "body_image_hidden" %>
-        <%= f.label TempConfig.config["0"], :id=>"temp_loc", :style=>"display:none;"  %>
+        <div id="audio_fields" style="display:none;">          
+          <%= f.file_field "File", :class=>"form-control tus-file", :id=>"body_audio_field", :style=>"height:auto;" %>
+          <%= f.hidden_field :body_audio_hidden, :id => "body_audio_hidden" %>
+          <%= f.label TempConfig.config["0"], :id=>"temp_loc", :style=>"display:none;"  %>
+        </div>
+        <div id="image_fields" style="display:none;">
+          <%= f.file_field :body_image, :class=>"form-control", :id=>"body_image_field", :style=>"height:auto;" %>
+        </div>
       </div>
     <%else%>
         <%= render :partial => "works/show_chapter", :collection => @chapters %>

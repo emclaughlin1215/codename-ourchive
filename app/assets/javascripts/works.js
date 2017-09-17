@@ -55,16 +55,26 @@ $(document).ready(function() {
     if (work_type == '1'){
       $('#work_text_label').show();
       $('#body_text_field').show();
-      $('#work_image_label').hide();
-      $('#body_image_field').hide();
+      $('#audio_fields').hide();
+      $('#image_fields').hide();
     }
 
-    else{
+    if (work_type == '0'){
       $('#work_text_label').hide();
+      $('#work_file_label').show();
       $('#chapter_text_label').hide();
       $('#body_text_field').hide();
-      $('#work_image_label').show();
-      $('#body_image_field').show();
+      $('#image_fields').hide();
+      $('#audio_fields').show();
+    }
+    if (work_type == '2')
+    {
+      $('#work_text_label').hide();
+      $('#work_file_label').show();
+      $('#chapter_text_label').hide();
+      $('#body_text_field').hide();
+      $('#image_fields').show();
+      $('#audio_fields').hide();
     }
   audiojs.events.ready(function() {
     var as = audiojs.createAll();
@@ -91,17 +101,25 @@ $(document).ready(function() {
     if (work_type == '1'){
       $('#work_text_label').show();
       $('#body_text_field').show();
-      $('#work_image_label').hide();
-      $('#body_image_field').hide();
+      $('#audio_fields').hide();
+      $('#image_fields').hide();
     }
 
-    else{
+    if (work_type == '0'){
       $('#work_text_label').hide();
       $('#chapter_text_label').hide();
       $('#body_text_field').hide();
-      $('#work_image_label').show();
-      $('#body_image_field').show();
-    }    
+      $('#image_fields').hide();
+      $('#audio_fields').show();
+    }
+    if (work_type == '2')
+    {
+      $('#work_text_label').hide();
+      $('#chapter_text_label').hide();
+      $('#body_text_field').hide();
+      $('#image_fields').show();
+      $('#audio_fields').hide();
+    }   
   });
   $('#in_collection').change(function(){
       if ($(this).is(":checked")) {
@@ -236,7 +254,6 @@ $(document).ready(function() {
             console.log(bytesUploaded, bytesTotal, percentage + "%")
         },
         onSuccess: function() {
-            //alert($('#body_image_hidden'));
             var url = upload.url;
             var split = url.split("files")[1];
             var temp_loc = $('#temp_loc').html();
@@ -249,9 +266,7 @@ $(document).ready(function() {
                 mime_type: upload.file.type,
               }
             };
-            $('#body_image_hidden').val(JSON.stringify(fileData));
-            console.log("Download %s from %s", upload.file.name, upload.url)
-            $('#body_image_field').remove();
+            $('#body_audio_hidden').val(JSON.stringify(fileData));
         }
     });
     upload.start();
