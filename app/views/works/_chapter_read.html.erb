@@ -7,13 +7,13 @@
 		<div class="col-md-12"><blockquote><%= chapters[chapter_number-1].chapter_summary %></blockquote></div>
 	</div>
 	<hr/>
-	<% if chapters[chapter_number-1].body_audio? %>
+	<% if chapters[chapter_number-1].chapter_audio %>
 		<div class="row">
 			<div class="col-md-5">	
-				<%= audio_tag chapters[chapter_number-1].body_audio.url %>
+				<%= audio_tag chapters[chapter_number-1].chapter_audio.url %>
 	      	</div>
 	      	<div class="col-md-4">
-	      		<%= link_to 'Download Audio', chapters[chapter_number-1].body_audio.url %> 
+	      		<%= link_to 'Download Audio', chapters[chapter_number-1].chapter_audio.url %> 
 	      	</div>
 		</div>
 		<br/>

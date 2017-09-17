@@ -55,6 +55,7 @@ $(document).ready(function() {
     if (work_type == '1'){
       $('#work_text_label').show();
       $('#body_text_field').show();
+      $('#work_file_label').hide();
       $('#audio_fields').hide();
       $('#image_fields').hide();
     }
@@ -101,12 +102,14 @@ $(document).ready(function() {
     if (work_type == '1'){
       $('#work_text_label').show();
       $('#body_text_field').show();
+      $('#work_file_label').hide();
       $('#audio_fields').hide();
       $('#image_fields').hide();
     }
 
     if (work_type == '0'){
       $('#work_text_label').hide();
+      $('#work_file_label').show();
       $('#chapter_text_label').hide();
       $('#body_text_field').hide();
       $('#image_fields').hide();
@@ -115,11 +118,12 @@ $(document).ready(function() {
     if (work_type == '2')
     {
       $('#work_text_label').hide();
+      $('#work_file_label').show();
       $('#chapter_text_label').hide();
       $('#body_text_field').hide();
       $('#image_fields').show();
       $('#audio_fields').hide();
-    }   
+    } 
   });
   $('#in_collection').change(function(){
       if ($(this).is(":checked")) {

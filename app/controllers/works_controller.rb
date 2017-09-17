@@ -31,8 +31,8 @@ class WorksController < ApplicationController
   end
   def delete_chapter_audio
     chapter = Chapter.find(params[:chapter_id])
-    chapter.body_audio.destroy
-    chapter.body_audio.clear
+    chapter.chapter_audio.destroy
+    chapter.chapter_audio.clear
     chapter.save
     redirect_to edit_work_path
   end

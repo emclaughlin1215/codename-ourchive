@@ -12,8 +12,8 @@
   </div>
   <div class="field">
     <%= label_tag :body_audio, "Chapter audio" %><br>
-    <% if edit_chapter.body_audio? %>
-      <%= link_to 'Download Audio', edit_chapter.body_audio.url, :class => "play" %><br>
+    <% if edit_chapter.chapter_audio? %>
+      <%= link_to 'Download Audio', edit_chapter.chapter_audio.url, :class => "play" %><br>
     <% end %>
     <%= file_field_tag 'body_audios[]' %>
   </div>

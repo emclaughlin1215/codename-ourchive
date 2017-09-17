@@ -23,9 +23,9 @@
     </div>
     <div class="form-group">
       <%= label_tag 'audio', 'Audio', class: "form-header" %>
-      <% if show_chapter.body_audio? %>
+      <% if show_chapter.chapter_audio %>
         <div class="row">
-          <%= link_to 'Download Audio', show_chapter.body_audio.url, :class => "play col-md-4" %>
+          <%= link_to 'Download Audio', show_chapter.chapter_audio.url, :class => "play col-md-4" %>
         </div>
         <br>
       <% end %>
